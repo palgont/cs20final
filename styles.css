@@ -3,6 +3,7 @@
 
 body { 
     margin: 0 auto; 
+    background-color: #FDF8E9;
 }
 #top_bar { 
     width: 100%;
@@ -17,7 +18,7 @@ body {
 }
 header {
     font-family: "Open Sans";
-    background-color:#032030;
+    background-color:#379537;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -36,7 +37,7 @@ nav {
         font-family: "Open Sans";
         display:flex;
         justify-content: center;
-        background-color: #032030;
+        background-color: #379537;
         overflow: hidden;
         padding:10px;
 }
@@ -58,7 +59,7 @@ nav a:hover{
 
 footer {
     text-align: center;
-    background-color:#032030;
+    background-color:#379537;
     width:100%;
     color: white;
     padding: 10px 0px;
