@@ -14,12 +14,11 @@
             <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
             <div class="nav-links">
                 <a href="index.html">Home </a>
-                <a href="buy.html">Buy </a>
-                <a href="rent.html">Rent</a>
-                <a href="sell.html">Sell</a>
-                <a href="agents.html">Agents</a>
-                <a href="qanda.html">Q/A</a>
-                <a href="contact.html">Contact Us</a>
+                <a href="about.html">About </a>
+                <a href="createadish.html">CreateaDish</a>
+                <a href="recipes.html">Recipes</a>
+                <a href="order.html">Order</a>
+                <a href="login.html">Login</a>
             </div>
         </nav>
         <div id = "below_nav"></div>
