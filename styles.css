@@ -3,8 +3,13 @@
 
 body { 
     margin: 0 auto; 
+<<<<<<< HEAD
+    background-color: rgba(41, 171, 8, 0.895);
+=======
     background-color: #FDF8E9;
+>>>>>>> 0a5df361ce94581da35f5ef8eb5de70ba94f6566
 }
+
 #top_bar { 
     width: 100%;
     /* position: fixed; */
