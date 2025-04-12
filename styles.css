@@ -32,6 +32,13 @@ h1 {
     font-size: 35px;
     font-family: "DM Serif Text"
 }
+#logo{
+    max-width: 70px;
+    max-height:70px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left:15px;
+}
 nav {
         font-size: 20px;
         font-family: "Open Sans";
@@ -102,7 +109,7 @@ footer p a:hover{
 
     .hamburger {
         display:block;
-        background-color: #032030;
+        background-color: #379537;
         color:#fff;
         font-size: 50px;
     }
@@ -112,7 +119,7 @@ footer p a:hover{
     .nav-links {
         display: none; /* Hide links by default */
         flex-direction: column;
-        background-color: #032030;
+        background-color: #379537;
         /* position: absolute;
         top: 50px;
         left: 0; */

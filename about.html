@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- URL: http://localhost:5500/midterm/index.html -->
+        <title>NomNomNom</title>
+        <!-- Link to external style sheet -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- For Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+        <!-- For JQuery usage -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <!--Font Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+        <!-- For responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .qanda-container {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 20px;
+                font-family: "Open Sans", sans-serif;
+            }
+            
+            .qanda-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .question {
+                background-color: #f8f8f8;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            .answer {
+                display: none;
+                padding: 10px;
+                margin-top: 5px;
+                border-left: 3px solid #50affd;
+                background-color: #f1f1f1;
+                border-radius: 5px;
+            }
+
+            section img { 
+                width: 100%;
+                height: 420px;
+                object-fit: cover;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="top_bar">
+            <!-- Header -->
+            <header>
+                <a href="index.html">
+                    <div id = "img_container">
+                        <img id="logo" src="images/nomoriginal.png">
+                    </div>
+                </a>
+                <a href="index.html"><span id="title">NomNomNom</span></a>
+            </header>
+            <!-- Navagation Bar -->
+            <nav>
+                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+                <div class="nav-links">
+                        <a href="index.html">Home </a>
+                        <a href="about.html">About </a>
+                        <a href="createadish.html">CreateaDish</a>
+                        <a href="recipes.html">Recipes</a>
+                        <a href="order.html">Order</a>
+                        <a href="login.html">Login</a>
+                </div>
+            </nav>
+            <div id = "below_nav"></div>
+        </div>
+        <section>
+             <img src="./images/bg2.jpg" alt="">
+        </section>
+
+        <!-- About Our Office -->
+        <section class="qanda-container">
+            <h2>About Us</h2>
+            <p>
+                NomNomNom is dedicate to make healthy eating easy and
+                sustainable by offering customizable or preset grocery bundles
+                based on a weekly or biweekly subscription. Catering to various
+                dietary needs—including vegan, vegetarian, meat & vegetables,
+                halal, kosher, and more—NomNomNom helps users enjoy nutritious,
+                well-balanced meals while reducing food waste. By delivering
+                thoughtfully curated ingredients in the right portions, we make
+                meal planning effortless and ensure that nothing goes to waste.
+
+            </p>
+            <p>
+                Our office is located in <strong>Boston</strong>, but we serve nationwide.
+                With a team of top-tier real estate experts, we ensure a smooth and seamless 
+                experience in buying, renting, and selling properties.
+            </p>
+        </section>
+
+        <!-- Q&A Section -->
+        <section class="qanda-container">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="question">How do I start the process of buying a home?</div>
+            <div class="answer">To start the home-buying process, first determine your budget, get pre-approved for a mortgage, and connect with one of our real estate agents to explore available properties.</div>
+
+            <div class="question">Do I need a real estate agent to buy a house?</div>
+            <div class="answer">While you can buy a house on your own, having a real estate agent simplifies the process and helps you find the best deals, negotiate prices, and handle legal paperwork.</div>
+
+            <div class="question">What are the common costs when purchasing a house?</div>
+            <div class="answer">Common costs include the down payment, closing costs, home inspection fees, and potential renovation expenses.</div>
+
+            <div class="question">How long does it take to buy a home?</div>
+            <div class="answer">On average, it takes 30 to 60 days to close on a home after making an offer, depending on financing, inspections, and negotiations.</div>
+
+            <div class="question">Can I buy a house with a low credit score?</div>
+            <div class="answer">Yes, but options may be limited. You may qualify for FHA loans or other programs that help buyers with lower credit scores.</div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>©PropertyPath &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+                &nbsp; <a href="mailto:propertypath@gmail.com">propertypath@gmail.com</a></p>
+        </footer>
+
+        <!-- jQuery Script for Expanding Q&A -->
+        <script>
+            $(document).ready(function() {
+                $(".question").click(function() {
+                    $(this).next(".answer").slideToggle();
+                    $(".answer").not($(this).next()).slideUp(); // Closes other answers when a new one is clicked
+                });
+            });
+        </script>
+        
+    </body>
+    <script src="script.js"></script>
+</html>
