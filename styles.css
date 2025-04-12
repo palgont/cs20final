@@ -3,7 +3,11 @@
 
 body { 
     margin: 0 auto; 
+<<<<<<< HEAD
     background-color: rgba(41, 171, 8, 0.895);
+=======
+    background-color: #FDF8E9;
+>>>>>>> 0a5df361ce94581da35f5ef8eb5de70ba94f6566
 }
 
 #top_bar { 
@@ -19,7 +23,7 @@ body {
 }
 header {
     font-family: "Open Sans";
-    background-color:#032030;
+    background-color:#379537;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -38,7 +42,7 @@ nav {
         font-family: "Open Sans";
         display:flex;
         justify-content: center;
-        background-color: #032030;
+        background-color: #379537;
         overflow: hidden;
         padding:10px;
 }
@@ -60,7 +64,7 @@ nav a:hover{
 
 footer {
     text-align: center;
-    background-color:#032030;
+    background-color:#379537;
     width:100%;
     color: white;
     padding: 10px 0px;
