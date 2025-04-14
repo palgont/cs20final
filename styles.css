@@ -3,11 +3,7 @@
 
 body { 
     margin: 0 auto; 
-<<<<<<< HEAD
-    background-color: rgba(41, 171, 8, 0.895);
-=======
     background-color: #FDF8E9;
->>>>>>> 0a5df361ce94581da35f5ef8eb5de70ba94f6566
 }
 
 #top_bar { 
@@ -36,6 +32,13 @@ h1 {
     color: #000;
     font-size: 35px;
     font-family: "DM Serif Text"
+}
+#logo{
+    max-width: 70px;
+    max-height:70px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left:15px;
 }
 nav {
         font-size: 20px;
@@ -107,7 +110,7 @@ footer p a:hover{
 
     .hamburger {
         display:block;
-        background-color: #032030;
+        background-color: #379537;
         color:#fff;
         font-size: 50px;
     }
@@ -117,7 +120,7 @@ footer p a:hover{
     .nav-links {
         display: none; /* Hide links by default */
         flex-direction: column;
-        background-color: #032030;
+        background-color: #379537;
         /* position: absolute;
         top: 50px;
         left: 0; */

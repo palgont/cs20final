@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PropertyPath</title>
+        <!-- Link to external style sheet -->
+        <link rel="stylesheet" href="styles.css">
+         <!-- Link to external style sheet -->
+         <link rel="stylesheet" href="order.css">
+        <!-- For Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/house_favicon.jpg">
+        <!-- For JQuery usage -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <!--Font Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap,
+        wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+        <!-- For responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #food_options { 
+                
+                background-color: yellow;
+                width: 50%;
+                justify-content: center;
+                padding: 150px;
+                bottom: 100px;
+                border: 3px solid rgb(0, 255, 17);
+                display: flex; 
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin: 0 auto;
+
+                
+            }
+
+            .meal_options { 
+                width: 250px;
+                height: 150px;
+                border: 3px solid rgb(0, 106, 255);
+             
+               
+            }  
+
+        </style>
+             
+    </head>
+    <script>
+        function toggleMenu() {
+            $(".nav-links").toggleClass("active");
+
+            if ($(".nav-links").hasClass("active")) {
+                $(".nav-links").css({ "position": "absolute", "z-index": "1200", "top": "50px", "left": "0", "width": "100%" });
+            } else {
+                $(".nav-links").css({ "position": "relative" });
+            }
+        }
+
+    </script>
+    <body>
+        <!-- Header -->
+        <div id="top_bar">
+            <header>
+                <a href="index.html">
+                    <div id = "img_container">
+                        <img id="logo" src="./images/nomoriginal.png">
+                    </div>
+                </a>
+                <a href="index.html"><span id="title">NomNomNom</span></a>
+            </header>
+            <!-- Navagation Bar -->
+            <nav>
+                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+                <div class="nav-links">
+                    <a href="index.html">Home </a>
+                    <a href="about.html">About </a>
+                    <a href="createadish.html">CreateaDish</a>
+                    <a href="recipes.html">Recipes</a>
+                    <a href="order.html">Order</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </nav>
+            <div id = "below_nav"></div>
+        </div>
+
+        <section id="first_section"></section>
+
+        <script> 
+            var options_div = $("<div id = 'food_options'></div>")
+            
+            var options_array = ["Budget", "Custom", "Halal", "High Protein", "Kosher", "Paleo", "Vegan", "Vegetarian"]
+            options_array.forEach((option)=> { 
+                var new_option = $("<div id ="+ option +" class = 'meal_options'></div>").attr("id", option)
+                new_option.html("<p class='option_tag'>" + option+ "</p>")
+                options_div.append(new_option)
+            })
+            $('#first_section').append(options_div)
+
+        </script>
+        
+        <!-- Footer -->
+        <footer>
+            <p>©PropertyPath &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+                &nbsp; <a href="mailto:propertypath@gmail.com">
+                    propertypath@gmail.com</a></p>
+        </footer>
+    </body>
+    <script src="script.js"></script>
+</html>
