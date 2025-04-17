@@ -44,8 +44,10 @@
         }
         .slogan {
             padding: 35px;
-            background: #dddddd86;
+            background: #fffcf1;
             border:none;
+            margin-left:30px;
+            margin-right: 20%;
         }
         .slogan p{
             font-size:20px;
@@ -71,25 +73,44 @@
             text-align: center;
             width: 300px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            background:#f8f7f75c;
+            background:#f7f5f5;;
+            align-items: center;
+        }
+        .card a {
+            text-decoration: none;
         }
         .card img {
             width: 80%;
             border-radius: 8px;
+            height: 280px;
+            width: 320px;
+            align-items: center;
+        }
+        .card-image-mid {
+            width: 80%;
+            border-radius: 8px;
+            height: 280px;
+            width: 400px;
+            margin-top:8px;
+            align-items: center;
         }
         .card-description h4{
             font-size:24px;
         }
         .card button {
-            margin-top: 10px;
-            padding: 8px 16px;
+            display: block;
+            width: 150px;
+            height: 45px;
+            margin: 10px auto 0;
             border: none;
             background-color: #007BFF;
             color: white;
             cursor: pointer;
             border-radius: 4px;
-            font-size:20px;
+            font-size: 20px;
             font-family: "DM Serif Text";
+            line-height: 45px;
+            text-align: center;
         }
         .card button:hover {
             background-color: #0056b3;
@@ -106,7 +127,7 @@
             background-repeat: no-repeat;
         }
         .day_container p{
-            color: #edeee1;
+            color: #fefff5;
             font-size: clamp(65px, 50vh, 30px);
             font-weight:900;
             font-family: "DM Serif Text";
@@ -114,8 +135,8 @@
             text-wrap:wrap;
             display:flex;
             position:relative;
-            top:10%;
-            left:5%;
+            top:14%;
+            left:3%;
         }
         @media(max-width: 400px) { 
 
@@ -334,13 +355,13 @@
             border-radius: 1rem;
         }
         .value-card-front {
-            background: #dddddd28;
+            background: #f7f5f5;
             border: 1px solid #e5e7eb;
             font-size:25px;
             font-family: "DM Serif Text";
         }
         .value-card-back {
-            background: #043651;
+            background: #379537;
             color: white;
             transform: rotateY(180deg);
             font-size:18px;
@@ -360,7 +381,6 @@
             }
         }
 
-    
         </style>
         
     </head>
@@ -406,27 +426,27 @@
         <div class="card-container">
             <div class="card">
                 <div class="card-image">
-                <img src="./images/buy_art.jpg" alt="Buy a home">
+                <img src="./images/bundle_icon2.png" alt="Bundle Icon">
                 </div>
                 <div class="card-description">
-                <h4>Select Meals</h4>
+                <h4>Select Bundle</h4>
                 <p>Find the perfect meal plan for you.</p>
                 <a href="order.html"><button>Order</button></a>
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">
-                <img src="./images/sell_art.jpg" alt="Sell a home">
+                <div class="card-image-mid">
+                <img src="./images/recipe_icon.png" alt="Recipe Icon">
                 </div>
                 <div class="card-description">
                 <h4>Recipes</h4>
-                <p>Get the best value for your property.</p>
-                <a href="recipe.html"><button>Find Recipes</button></a>
+                <p>Find our favorite recipes and share yours.</p>
+                <a href="recipe.html"><button>Explore</button></a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-image">
-                <img src="./images/rent_art2.jpg" alt="Rent a home">
+                <img src="./images/dish_icon.png" alt="Dish Icon">
                 </div>
                 <div class="card-description">
                 <h4>Create a Dish</h4>
@@ -441,22 +461,29 @@
         </div>
         <!-- Local Expertise Container -->
         <section class="local-container">
-            <h2>Local Expertise</h2>
+            <h2>Local Ingredients</h2>
             <p>
-                With in-depth local knowledge and a nationwide network, we connect 
-                buyers and sellers from all over the country to the perfect property. 
-                Let’s make your real estate dreams a reality."
+                With deep roots in local farming communities and a network of
+                distribution centers from coast to coast, we source the freshest
+                ingredients right from your region. By partnering with nearby
+                growers nationwide, NomNomNom brings seasonal produce and artisanal
+                goods straight to your door—celebrating local flavor and
+                sustainability in every bite.
             </p>
             <p>
-                Our office is located in <strong>New York City</strong>, but we serve clients nationwide. With a team of top-tier real estate experts, we ensure a smooth and seamless 
-                experience in buying, renting, and selling properties.
+                Our office is located in <strong>Boston</strong>, but we deliver
+                fresh, chef‑crafted meals to every corner of the country.
+                Thanks to our nationwide shipping network, you’ll receive perfectly
+                portioned ingredients straight to your door—fresh, fast, and ready
+                whenever you are.
+            </p>.
             </p>
             <br>
             <div class="local-button-container">
-                <a href="agents.html"><button>Meet Agents</button></a>
+                <a href="about.html"><button>Learn More</button></a>
             </div>
             <br><br><br>
-            <h2>Agent Network</h2>
+            <h2>Distribution Centers</h2>
             <div class ="state-network">
                 <ul class="split-list">
                     <li>New York</li>
@@ -485,53 +512,51 @@
         <div class="slider-container">
             <button class="prev">←</button>
             <div class="slider-inner">
-                <img src="./images/office1.jpg" class="slider-item">
-                <img src="./images/office2.jpg" class="slider-item">
-                <img src="./images/office3.jpg" class="slider-item">
-                <img src="./images/office8.jpg" class="slider-item">
-                <img src="./images/office4.jpg" class="slider-item">
-                <img src="./images/office7.jpg" class="slider-item">
-                <img src="./images/office6.jpg" class="slider-item">                
+                <img src="./images/dish1.png" class="slider-item">
+                <img src="./images/dish2.png" class="slider-item">
+                <img src="./images/dish3.png" class="slider-item">
+                <img src="./images/dish4.png" class="slider-item">
+                <img src="./images/dish5.png" class="slider-item">
+                <img src="./images/dish6.png" class="slider-item">
+                <img src="./images/dish7.png" class="slider-item">                
             </div>
             <button class="next">→</button>
         </div>
         <!-- Slogan & Description -->
         <div class="values">
             <h1>Our Values</h1>
-            <p> At PropertyPath, our core values of integrity, transparency, and
-                client-first service drive us to build lasting relationships and
-                deliver exceptional real estate experiences with trust and respect.
+            <p> At NomNomNom, our core values of freshness, convenience, and care
+                guide everything we do — from sourcing quality ingredients to delivering
+                meals that fit your lifestyle. We're committed to making every bite
+                satisfying, simple, and stress-free.
             </p>
         </div>
         <!-- Value Cards -->
         <div class="value-cards">
             <div class="value-card">
                 <div class="value-card-inner">
-                <div class="value-card-front">Integrity</div>
-                <div class="value-card-back">Integrity is essential to
-                    us at PropertyPath because it ensures we build trust,
-                    foster transparent relationships, and always act in the best
-                    interest of our clients.
+                <div class="value-card-front">Freshness</div>
+                <div class="value-card-back">We use only the highest-quality,
+                    seasonal ingredients to ensure every meal tastes like it was
+                    made just for you.
                 </div>
                 </div>
             </div>
             <div class="value-card">
                 <div class="value-card-inner">
-                <div class="value-card-front">Transparency</div>
-                <div class="value-card-back">Transparency is important to us at
-                    PropertyPath because it fosters trust, ensures clear communication,
-                    and empowers our clients to make informed decisions throughout
-                    their real estate journey.
+                <div class="value-card-front">Sustainability</div>
+                <div class="value-card-back">From sourcing to packaging, we’re
+                    committed to eco-friendly practices that care for both people
+                    and the planet.
                 </div>
                 </div>
             </div>
             <div class="value-card">
                 <div class="value-card-inner">
-                <div class="value-card-front">Client-First</div>
-                <div class="value-card-back">Being client-first is at the heart of
-                    PropertyPath, as we prioritize our clients' needs, ensuring
-                    they receive personalized service and the best possible outcomes
-                    at every step of their real estate journey.
+                <div class="value-card-front">Simplicity</div>
+                <div class="value-card-back">We make mealtime effortless with
+                    thoughtfully designed menus and a seamless delivery experience
+                    that fits your lifestyle.
                 </div>
                 </div>
             </div>
@@ -543,73 +568,58 @@
         </footer>
         <script>
             $(document).ready(function () {
-                var currentIndex = 0;
-                // count number of slider-items to find total images
-                var totalImages = $('.slider-item').length;
-                
-                // return number of images to be visible for responsiveness
-                function getVisibleImages() {
-                    let width = $(window).width();
-                    // one image for phone screen
-                    if (width <= 768) {
-                        return 1;
-                    } else if (width <= 1100) {
-                        // two images for smaller screen
-                        return 2;
-                    } else {
-                        // 3 images for computer screen
-                        return 3;
-                    }
+              let currentIndex = 0;
+              const totalImages = $('.slider-item').length;
+            
+              function getVisibleImages() {
+                const w = $(window).width();
+                if (w <= 768)        return 1;
+                else if (w <= 1100)  return 2;
+                else if (w <= 1600)  return 3;
+                else                  return 4;
+              }
+            
+              function updateSlider() {
+                const visible = getVisibleImages();
+                const containerWidth = $('.slider-container').width();
+                const imageWidth = containerWidth / visible;
+                $('.slider-item').css('width', imageWidth + 'px');
+            
+                const maxIndex = Math.max(0, totalImages - visible);
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                $('.slider-inner').css(
+                  'transform',
+                  'translateX(' + (-currentIndex * imageWidth) + 'px)'
+                );
+              }
+            
+              $('.next').click(function () {
+                const visible   = getVisibleImages();
+                const maxIndex  = Math.max(0, totalImages - visible);
+                if (currentIndex < maxIndex){
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // wrap around
                 }
-                // dynamically readjust image size to take up entire screen width
-                function updateSlider() {
-                    var visibleImages = getVisibleImages();
-                    var containerWidth = $('.slider-container').width();
-                    var imageWidth = containerWidth / visibleImages;
-
-                    // Set the exact width for each image
-                    $('.slider-item').css('width', imageWidth + 'px');
-
-                    // adjust maxIndex based on how many images are visible
-                    var maxIndex = Math.max(0, totalImages - visibleImages);
-                    if (currentIndex > maxIndex) {
-                        currentIndex = maxIndex; // Prevent index from exceeding bounds
-                    }
-                    // determine how much to translate horizontally by
-                    var newTransformValue = -currentIndex * imageWidth;
-                    $('.slider-inner').css('transform', 'translateX(' + newTransformValue + 'px)');
-                }
-
-                $('.next').click(function () {
-                    var visibleImages = getVisibleImages();
-                    var maxIndex = Math.max(0, totalImages - visibleImages);
-
-                    if (currentIndex < maxIndex) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0; // Loop to start
-                    }
-                    updateSlider();
-                });
-
-                $('.prev').click(function () {
-                    var visibleImages = getVisibleImages();
-                    var maxIndex = Math.max(0, totalImages - visibleImages);
-
-                    if (currentIndex > 0) {
+                updateSlider();
+              });
+              $('.prev').click(function () {
+                const visible   = getVisibleImages();
+                    const maxIndex  = Math.max(0, totalImages - visible);
+                    if (currentIndex > 0){
                         currentIndex--;
                     } else {
-                        currentIndex = maxIndex; // Loop to end
+                        currentIndex = maxIndex; // wrap around
                     }
-                    updateSlider();localStorage
-                });
-
-                $(window).resize(updateSlider);
-
-                // Initialize
-                updateSlider();
+                    updateSlider();
+              });
+              $(window).resize(updateSlider);
+            
+              // Initialize + auto‑slide
+              updateSlider();
+              let slideInterval = setInterval(() => $('.next').click(), 4000);
             });
-        </script>
+            </script>            
     </body>
     <script src="script.js"></script>
 </html>
