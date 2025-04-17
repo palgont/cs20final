@@ -1,0 +1,79 @@
+/*****************************************************Official Order page CSS */
+
+#food_options { 
+                
+    /* background-color: yellow; */
+    width: 60%;
+    justify-content: center;
+    /* padding-top: 150px; */
+    /* bottom: 100px; */
+    /* border: 3px solid rgb(0, 255, 17); */
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    
+}
+
+.meal_options { 
+    width: 250px;
+    height: 150px;
+    /* border: 3px solid rgb(0, 106, 255); */
+    margin: 20px; 
+    box-shadow: 3px 3px 10px rgb(172, 171, 171); /*Zeros represent vertical offset*/
+    border-radius: 10px;
+    text-align: center;
+    /* line-height: 60px; */
+    font-family: DM Serif Text;
+    font-size: 20px;   
+    background-color: #FDF8E9;          
+}  
+
+.option_img { 
+    margin-top: 15px;
+}
+
+#progress_bar{ 
+    border: 1px solid #379537;
+    width: 60%; 
+    height: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    
+    border-radius: 10px;
+}
+#progress_bar_in{ 
+
+    background-color: #379537;
+    width: 58%; 
+    height: 16px;
+    margin: 2px; 
+    /* padding: 2px; */
+    border-radius: 10px;
+}
+
+.div_link { 
+    text-decoration: none;
+    color: black;
+    transition: 0.2s ease-in-out;
+    
+}
+.div_link:hover{ 
+
+}
+
+#land_note{ 
+    padding: 140px 45px 0px 0px;
+
+    font-size: 30px;
+    font-family: DM Serif Text;
+    text-align: center;
+}
+
+footer { 
+    position: relative;
+    bottom: 0;
+}
+
+/*****************************************************Single option order page*/

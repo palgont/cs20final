@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PropertyPath</title>
+        <title>NomNomNom</title>
         <!-- Link to external style sheet -->
         <link rel="stylesheet" href="styles.css">
          <!-- Link to external style sheet -->
          <link rel="stylesheet" href="order.css">
         <!-- For Favicon -->
-        <link rel="icon" type="image/x-icon" href="images/house_favicon.jpg">
+        <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
         <!-- For JQuery usage -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
@@ -21,29 +21,6 @@
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            #food_options { 
-                
-                background-color: yellow;
-                width: 50%;
-                justify-content: center;
-                padding: 150px;
-                bottom: 100px;
-                border: 3px solid rgb(0, 255, 17);
-                display: flex; 
-                flex-direction: row;
-                flex-wrap: wrap;
-                margin: 0 auto;
-
-                
-            }
-
-            .meal_options { 
-                width: 250px;
-                height: 150px;
-                border: 3px solid rgb(0, 106, 255);
-             
-               
-            }  
 
         </style>
              
@@ -86,18 +63,35 @@
             <div id = "below_nav"></div>
         </div>
 
-        <section id="first_section"></section>
+        <section id="first_section" >
+           <div id ="land_note" >Please select a NomNomNom subscription category to purchase</div>
+        </section>
 
         <script> 
             var options_div = $("<div id = 'food_options'></div>")
             
-            var options_array = ["Budget", "Custom", "Halal", "High Protein", "Kosher", "Paleo", "Vegan", "Vegetarian"]
+            var options_array = ["Budget", "Custom", "Halal", "High Protein", "Kosher", "Paleo", "vegan", "Vegetarian"]
             options_array.forEach((option)=> { 
-                var new_option = $("<div id ="+ option +" class = 'meal_options'></div>").attr("id", option)
-                new_option.html("<p class='option_tag'>" + option+ "</p>")
-                options_div.append(new_option)
+                var div_link = $("<a href= 'options_page.html' class = 'div_link'></a>")
+                var new_option = $("<div id ="+ option +" class = 'meal_options' ></div>").attr("id", option)
+                var image_path = option + ".png"
+                // if(option == "vegan") {
+                //     var image_path = option + ".jpg"
+                // }
+                new_option.html(" <img  class = 'option_img'src = 'images/"+ 
+                                image_path +" ' ></br> <p class='option_tag'>" + option+ "</p>")
+
+                div_link.append(new_option)
+                options_div.append(div_link)
+                
             })
             $('#first_section').append(options_div)
+
+            var progress_bar = $("<div id = 'progress_bar'></div>")
+            $('#first_section').append(progress_bar)
+            var progress_bar_inner = $("<div id ='progress_bar_in'></div>")
+            $('#progress_bar').append(progress_bar_inner)
+           
 
         </script>
         
