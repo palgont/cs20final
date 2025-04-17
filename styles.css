@@ -98,8 +98,8 @@ footer p a:hover{
     cursor: pointer;
     position: absolute;
     left: 20px;
-    top: 15px;
-    z-index: 200;
+    top: 0px;
+    z-index: 100;
 }
 
 @media (max-width: 768px) {
