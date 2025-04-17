@@ -19,6 +19,35 @@
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            .nutrition {
+                background: #379537;
+                height: 500px;
+                font-family: "DM Serif Text";
+                display: flex;
+                width: 100%;
+            }
+            .nutrition_text{
+                display:flex;
+            }
+            .nutrition h3{
+                color: #fff;
+                font-size: 42px;
+                margin-left:80px;
+            }
+            .nutrition p{
+                color: #fff;
+                font-family: "DM Serif Text";
+                font-size:28px;
+                padding-top:150px;
+            }
+            .nutrition strong{
+                color: #212222;
+            }
+            .nutrition img{
+                height:500px;
+                width:50vw;
+            }
+
             .qanda-container {
                 max-width: 800px;
                 margin: 40px auto;
@@ -26,9 +55,12 @@
                 font-family: "Open Sans", sans-serif;
             }
             
-            .qanda-container h2 {
+            .qanda-container h1 {
                 text-align: center;
-                margin-bottom: 20px;
+                font-size:48px;
+            }
+            .qanda-container p {
+                font-size:20px;
             }
 
             .question {
@@ -87,11 +119,11 @@
              <img src="./images/about_banner.jpg" alt="">
         </section>
 
-        <!-- About Our Office -->
+        <!-- About Us -->
         <section class="qanda-container">
-            <h2>About Us</h2>
+            <h1>About Us</h1>
             <p>
-                NomNomNom is dedicate to make healthy eating easy and
+                NomNomNom is dedicated to make healthy eating easy and
                 sustainable by offering customizable or preset grocery bundles
                 based on a weekly or biweekly subscription. Catering to various
                 dietary needs—including vegan, vegetarian, meat & vegetables,
@@ -107,6 +139,22 @@
                 experience in buying, renting, and selling properties.
             </p>
         </section>
+
+
+        <!-- Nutrition Facts -->
+        <div class="nutrition">
+            <div class="nutrition_text">
+            <h3>Nutrition</h3>
+            <p>
+                About <strong>two-thirds</strong> of U.S. adults and about
+                <strong>one-third</strong> of children aged 2 through 19 years
+                are overweight or obese.
+            </p>
+            <div class = nutrtion_img>
+                <img src="./images/nutrition2.jpg" alt="Nutrition Image">
+            </div>
+            </div>
+        </div>
 
         <!-- Q&A Section -->
         <section class="qanda-container">
