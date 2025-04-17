@@ -1,59 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Google Sign-In</title>
-  
-  <!-- Replace with your actual client ID -->
-  <meta name="google-signin-client_id" content="1034974765274-v2jn8j3aspv0su2djib7okbpvt4das2a.apps.googleusercontent.com">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
-  <script src="https://apis.google.com/js/platform.js?onload=initClient" async defer></script>
+<script>
+  function handleCredentialResponse(response) {
+    console.log("JWT ID Token: " + response.credential);
+  }
 
-  <script>
-    let auth2;
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "1034974765274-s0lk3shdv73i1m1ab9lokgckjj3l0ral.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
 
-    function initClient() {
-      gapi.load('auth2', function () {
-        auth2 = gapi.auth2.init({
-          client_id: '1034974765274-v2jn8j3aspv0su2djib7okbpvt4das2a.apps.googleusercontent.com',
-          cookiepolicy: 'single_host_origin'
-        });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }
+    );
 
-        const signInBtn = document.getElementById('googleSignInBtn');
-        if (signInBtn) {
-          signInBtn.addEventListener('click', function () {
-            auth2.signIn().then(function (googleUser) {
-              const profile = googleUser.getBasicProfile();
-              const name = profile.getName();
-              const email = profile.getEmail();
-              const imageUrl = profile.getImageUrl();
-
-              // Display user info
-              document.getElementById('userInfo').innerHTML = `
-                <h3>Welcome, ${name}!</h3>
-                <p>Email: ${email}</p>
-                <img src="${imageUrl}" alt="Profile Image" style="width:100px; border-radius:50%;">
-              `;
-
-              // Optionally send token to your server
-              const id_token = googleUser.getAuthResponse().id_token;
-              fetch('/tokensignin', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_token }),
-              });
-            });
-          });
-        }
-      });
-    }
-  </script>
-</head>
-<body>
-  <h2>Sign in with Google</h2>
-  <button id="googleSignInBtn">Sign in with Google</button>
-
-  <!-- Section to display user info -->
-  <div id="userInfo" style="margin-top: 20px;"></div>
-</body>
-</html>
+    google.accounts.id.prompt();
+  };
+</script>
+<div id="buttonDiv"></div>
