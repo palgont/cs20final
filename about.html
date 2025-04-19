@@ -24,28 +24,54 @@
                 height: 500px;
                 font-family: "DM Serif Text";
                 display: flex;
+                flex-direction: column;
+                align-items: stretch;
                 width: 100%;
             }
-            .nutrition_text{
-                display:flex;
+
+            /* Text half + image half on medium+ screens */
+            @media (min-width: 800px) {
+                .nutrition {
+                    flex-direction: row;
+                }
+                .nutrition-text,
+                .nutrition-img {
+                    width: 50%;
+                }
             }
-            .nutrition h3{
-                color: #fff;
-                font-size: 42px;
-                margin-left:80px;
+
+            .nutrition-text {
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .nutrition-text h3 {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
             }
             .nutrition p{
                 color: #fff;
                 font-family: "DM Serif Text";
-                font-size:28px;
-                padding-top:150px;
+                line-height: 1.6;
+                font-size: 1.7rem;
             }
             .nutrition strong{
                 color: #212222;
             }
-            .nutrition img{
-                height:500px;
-                width:50vw;
+            .nutrition-img {
+                height: 16rem; /* ≈ 256px */
+            }
+            @media (min-width: 800px) {
+                .nutrition-img {
+                    height: auto;
+                }
+            }
+            .nutrition-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
             }
 
             .qanda-container {
@@ -134,25 +160,25 @@
 
             </p>
             <p>
-                Our office is located in <strong>Boston</strong>, but we serve nationwide.
-                With a team of top-tier real estate experts, we ensure a smooth and seamless 
-                experience in buying, renting, and selling properties.
+                Our headquarters is located in <strong>Boston</strong>, but we 
+                serve meal enthusiasts nationwide. With a team of top-tier
+                nutrition and tech experts, we ensure a smooth and seamless
+                experience in planning, tracking, and enjoying every bite.
             </p>
         </section>
 
-
         <!-- Nutrition Facts -->
         <div class="nutrition">
-            <div class="nutrition_text">
+            <div class="nutrition-text">
             <h3>Nutrition</h3>
             <p>
                 About <strong>two-thirds</strong> of U.S. adults and about
                 <strong>one-third</strong> of children aged 2 through 19 years
                 are overweight or obese.
             </p>
-            <div class = nutrtion_img>
-                <img src="./images/nutrition2.jpg" alt="Nutrition Image">
             </div>
+            <div class = nutrition-img>
+                <img src="./images/nutrition2.jpg" alt="Nutrition Image">
             </div>
         </div>
 
