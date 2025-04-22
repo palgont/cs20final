@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- URL: http://localhost:5500/midterm/index.html -->
+        <title>NomNomNom</title>
+        <!-- Link to external style sheet -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- For Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+        <!-- For JQuery usage -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <!--Font Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+        <!-- For responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .top-description { /*title and short description*/
+                max-width: 800px;
+                margin: 20px auto;
+                text-align: center;
+                padding: 10px;
+                font-family: "Open Sans", sans-serif;
+            }
+            
+            .top-description h1 { /*title*/
+                text-align: center;
+                font-size:48px;
+            }
+            .top-description p { /*short description under title*/
+                font-size:20px;
+            }
+
+            section img { /*top banner image*/
+                width: 100%;
+                height: 420px;
+                object-fit: cover;
+            }
+
+            /* submission form */
+            .form-container {
+                max-width: 600px;
+                margin: 40px auto;
+                padding: 20px;
+                font-family: "Open Sans", sans-serif;
+                background: #f8f8f8;
+                border-radius: 8px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            /* stack rows, gap between them */
+            #ingredients-container {
+                display: flex;
+                flex-direction: column;
+                row-gap: 0.75rem;
+            }
+
+            /* each input fills its row */
+            .ingredient-row input {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.5rem;
+                font-size: 1rem;
+            }
+            .buttons{
+                display:flex;
+                justify-content: center;
+            }
+            button {
+                width: 30%;
+                background-color: #50affd;
+                color: white;
+                padding: 10px;
+                margin:10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            
+        </style>
+        
+    </head>
+    <body>
+        <div id="top_bar">
+            <!-- Header -->
+            <header>
+                <a href="index.html">
+                    <div id = "img_container">
+                        <img id="logo" src="images/nomoriginal.png">
+                    </div>
+                </a>
+                <a href="index.html"><span id="title">NomNomNom</span></a>
+            </header>
+            <!-- Navagation Bar -->
+            <nav>
+                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+                <div class="nav-links">
+                        <a href="index.html">Home </a>
+                        <a href="about.html">About </a>
+                        <a href="createadish.html">CreateaDish</a>
+                        <a href="recipes.html">Recipes</a>
+                        <a href="order.html">Order</a>
+                        <a href="login.html">Login</a>
+                </div>
+            </nav>
+            <div id = "below_nav"></div>
+        </div>
+        <section>
+             <img src="./images/chopping_board.jpg" alt="banner image">
+        </section>
+
+        <!-- About Us -->
+        <section class="top-description">
+            <h1>CreateaDish</h1>
+            <p>
+                Enter ingredients you have at home to find delicious recipes you
+                can make.
+            </p>
+        </section>
+
+        <!-- User Form with Ingredients -->
+        <section class="form-container">
+                <form id="recipe-form">
+                        <div id="ingredients-container">
+                          <div class="ingredient-row">
+                            <input type="text" name="ingredient[]" placeholder="Ingredient 1">
+                          </div>
+                        </div>
+                <div class="buttons">
+                        <button type="button" id="add-ingredient">Add Ingredient</button>
+                        <button type="submit">Submit</button>
+                </div>
+                </form>
+                    
+                <!-- dynamic form, add more ingredient inputs -->
+                <script>
+                        const container = document.getElementById('ingredients-container');
+                        const addBtn    = document.getElementById('add-ingredient');
+                        let count       = 1;
+
+                        addBtn.addEventListener('click', () => {
+                        count++;
+                        // create row wrapper
+                        const row = document.createElement('div');
+                        row.className = 'ingredient-row';
+
+                        // create input
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.name = 'ingredient[]';
+                        input.placeholder = `Ingredient ${count}`;
+
+                        row.appendChild(input);
+                        container.appendChild(row);
+
+                        // optional: scroll new input into view
+                        input.scrollIntoView({ behavior: 'smooth' });
+                        });
+                </script>
+        </section>
+
+
+        <!-- Recipe Results -->
+        <div class="recipe-results">
+
+        </div>
+
+        <!-- Footer -->
+        <footer>
+                <p>©NomNomNom &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+                    &nbsp; <a href="mailto:nomnomnom@gmail.com">nomnomnom@gmail.com</a></p>
+            </footer>
+
+        <!-- jQuery Script for Expanding Q&A -->
+        <script>
+            $(document).ready(function() {
+                $(".question").click(function() {
+                    $(this).next(".answer").slideToggle();
+                    $(".answer").not($(this).next()).slideUp(); // Closes other answers when a new one is clicked
+                });
+            });
+        </script>
+
+<script>
+    (function() {
+      const RAPI_KEY  = 'b0965f3214msh0dadb2ecd1d8345p1fadccjsnb12422b10e35';
+      const RAPI_HOST = 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com';
+      const ENDPOINT  = `https://${RAPI_HOST}/recipes/findByIngredients`;
+  
+      document.getElementById('recipe-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+  
+        const inputs = document.querySelectorAll('input[name="ingredient[]"]');
+        const ingredients = Array.from(inputs)
+          .map(i => i.value.trim())
+          .filter(v => v)
+          .join(',');
+  
+        if (!ingredients) {
+          return alert('Please enter at least one ingredient.');
+        }
+  
+        const params = new URLSearchParams({
+          ingredients,
+          number: '3',
+          ignorePantry: 'true',
+          ranking: '1'
+        });
+  
+        const url = `${ENDPOINT}?${params}`;
+        try {
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'X-RapidAPI-Key':  RAPI_KEY,
+              'X-RapidAPI-Host': RAPI_HOST
+            }
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const recipes = await response.json();
+  
+          // render into the page
+          const resultsDiv = document.querySelector('.recipe-results');
+          resultsDiv.innerHTML = '';  // clear old
+  
+          recipes.forEach(recipe => {
+            const card = document.createElement('div');
+            card.className = 'recipe-card';
+            card.innerHTML = `
+              <h3>${recipe.title}</h3>
+              <img src="${recipe.image}" alt="${recipe.title}"
+                   style="max-width:100%;height:auto;border-radius:8px;" />
+              <p>Used ingredients: ${recipe.usedIngredientCount}</p>
+              <p>Missing ingredients: ${recipe.missedIngredientCount}</p>
+            `;
+            resultsDiv.appendChild(card);
+          });
+        } catch (err) {
+          console.error('RapidAPI error:', err);
+          alert('Failed to fetch recipes. See console for details.');
+        }
+      });
+    })();
+  </script>  
+        
+    </body>
+    <script src="script.js"></script>
+</html>
