@@ -5,7 +5,7 @@ const URL = 'mongodb+srv://mayhaali:SsLi5KuHuTDNaWK6@cluster0.j8ysx6r.mongodb.ne
 const { MongoClient } = require('mongodb');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 let db, collection;
 
@@ -17,6 +17,11 @@ MongoClient.connect(URL)
     app.listen(PORT);
   })
   .catch(err => console.error('MongoDB connection error:', err));
+
+// route for the homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'recipe.html'));
+});
 
 // fetch all data
 app.get('/data', async (req, res) => {
