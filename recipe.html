@@ -148,7 +148,11 @@
                 data.forEach(recipe => {
                 const div = document.createElement('div');
                 div.innerHTML = `<div class="question">${recipe.title}</div>
-                                 <div class="answer">${recipe.ingredients}</div>`;
+                                 <div class="answer">
+                                    <ul>
+                                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}
+                                    </ul>
+                                 </div>`;
                 container.appendChild(div);
                 });
             })
