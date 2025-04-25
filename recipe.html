@@ -149,9 +149,10 @@
                 const div = document.createElement('div');
                 div.innerHTML = `<div class="question">${recipe.title}</div>
                                  <div class="answer">
-                                    <ul>
-                                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}
-                                    </ul>
+                                    <p>Ingredients: <p>
+                                    <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
+                                    <p>Procedure: <p>
+                                    <ol>${recipe.procedure.map(procedure => `<li>${procedure}</li>`).join("")}</ol>
                                  </div>`;
                 container.appendChild(div);
                 });
