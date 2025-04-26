@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- URL: http://localhost:5500/midterm/index.html -->
+        <title>NomNomNom</title>
+        <!-- Link to external style sheet -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- For Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+        <!-- For JQuery usage -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <!--Font Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+        <!-- For responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+        html {
+            overflow-x:hidden;
+        }
+        body {
+            overflow-x: hidden;
+        }
+        section img { 
+            width : 100%;
+            height: 420px;
+            object-fit: cover;
+            object-position: 0 100%;
+        }
+        .slogan {
+            align-items: left;
+            justify-content: left;
+        }
+        h1 {
+            font-family: DM Serif Text;
+            font-size:40px;
+            margin:20px auto;
+        }
+        .slogan {
+            padding: 35px;
+            background: #fffcf1;
+            border:none;
+            margin-left:30px;
+            margin-right: 20%;
+        }
+        .slogan p{
+            font-size:20px;
+            font-family: "Open Sans", sans-serif;
+            margin: 20px auto;
+
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: 350px 350px 350px;
+            justify-content: center;
+            margin: 30px;
+        }
+        .card {
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid #ccc;
+            font-family: "Open Sans", sans-serif;
+            font-size:20px;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background:#f7f5f5;;
+            align-items: center;
+            padding-right:20px;
+            margin-right:30px;
+        }
+        .card a {
+            text-decoration: none;
+        }
+        .card img {
+            width: 80%;
+            border-radius: 8px;
+            height: 280px;
+            width: 320px;
+            align-items: center;
+        }
+        .card-image-mid {
+            width: 80%;
+            height: 280px;
+            width: 400px;
+            margin-top:8px;
+            align-items: center;
+        }
+        .card-description h4{
+            font-size:24px;
+        }
+        .card button {
+            display: block;
+            width: 150px;
+            height: 45px;
+            margin: 10px auto 0;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 20px;
+            font-family: "DM Serif Text";
+            line-height: 45px;
+            text-align: center;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        .day_container {
+            align-items: center;
+            justify-content: center;
+            text-align: justify;
+            background-image: url("./images/kitchen.jpg");
+            width : 100%;
+            height: 400px;
+            background-size:cover;
+            background-position: 0 70%;
+            background-repeat: no-repeat;
+        }
+        .day_container p{
+            color: #fefff5;
+            font-size: clamp(65px, 50vh, 30px);
+            font-weight:900;
+            font-family: "DM Serif Text";
+            padding: 40px auto;
+            text-wrap:wrap;
+            display:flex;
+            position:relative;
+            top:14%;
+            left:3%;
+        }
+        @media(max-width: 400px) { 
+
+            .day_container p { 
+                font-weight: 900px;
+            }
+        }
+
+        /* Call to Action Cards Responsiveness */
+        @media (max-width:1100px) {
+            .card {
+                width:90%;
+                flex-direction:row;
+                margin:10px;
+                padding-right:70px;
+                
+            }
+            .card-container{
+                grid-template-columns: 530px;
+                justify-content: center;
+            }
+        }
+        @media (max-width:450px) {
+            .card {
+                width: 72%;
+                flex-direction:row;
+                margin:10px;
+                
+            }
+            .card-container{
+                grid-template-columns: 530px;
+                justify-content: center;
+            }
+            li {
+                margin-right:0px;
+                padding-right:8px;
+                font-size:12px;
+            }
+        }
+        @media (max-width:1200px) {
+            .day_container p {
+                top:60%;
+                left:2%;
+                font-size:45px;
+            }
+        }
+        @media (max-width:800px) {
+            .day_container p {
+                top:60%;
+                left:2%;
+                font-size:45px;
+            }
+        }
+        @media (max-width:500px) {
+            .day_container p {
+                font-size:30px;
+            }
+        }
+
+        .local-container {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 20px;
+                font-family: "Open Sans", sans-serif;
+        }
+        .local-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .local-button-container {
+            text-align: center;
+        }
+        .local-container button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size:20px;
+            font-family: "DM Serif Text";
+        }
+        .local-container button:hover {
+            background-color: #0056b3;
+        }
+        .state-network {
+            display:flex;
+            justify-content:right;
+            text-align: left;
+            padding: 0px;
+        }
+       
+        .split-list {
+            list-style-type:disc;
+            width: 45%;
+            padding:0;
+        }
+        @media(max-width: 400px) { 
+            .split-list{ 
+                font-size: 0.7em;
+                padding: 10px;
+            }
+        }
+        /* Slider Container */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider-inner {
+            display: flex;
+            transition: transform 0.7s ease; /* Smooth transition for sliding effect */
+        }
+
+        .slider-item {
+            object-fit: cover; /* Ensure images cover the area without distortion */
+        }
+
+        /* Buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Slider Responsiveness */
+        @media (max-width: 768px) {
+            .slider-item {
+                width: 100%;
+            }
+        }
+        @media (max-width: 1100px) {
+            .slider-item {
+                flex: 0 0 50%; /* Show 2 images */
+            }
+        }
+
+        @media (max-width: 780px) {
+            .slider-item {
+                flex: 0 0 100%; /* Show 1 image */
+            }
+        }
+        .values {
+            padding: 35px;
+            background: #dddddd86;
+            border:none;
+            width:100%;
+        }
+        .values p{
+            font-size:20px;
+            font-family: "Open Sans", sans-serif;
+            margin-right: 20%;
+            margin-top: 60px;
+            padding: 0px 80px;
+        }
+
+        @media(max-width: 400px) { 
+            .values { 
+                padding: 25px;
+            }
+            .values p { 
+                font-size: 15px;
+                margin-right: 30px;
+            }
+        }
+        .value-cards {
+            display: grid;
+            grid-template-columns: 320px 320px 320px;
+            justify-content: center;
+            margin: 50px;
+        }
+        .value-card {
+            width:200px;
+            height:250px;
+            margin: 30px auto;
+            perspective: auto;
+            cursor:crosshair;
+        }
+        .value-card-inner {
+            position:relative;
+            width: 100%;
+            height:100%;
+            transition: transform 0.8s;
+            transform-style:preserve-3d;
+        }
+        .value-card:hover .value-card-inner {
+            transform: rotateY(180deg);
+        }
+        .value-card-front, .value-card-back {
+            position:absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+        }
+        .value-card-front {
+            background: #f7f5f5;
+            border: 1px solid #e5e7eb;
+            font-size:25px;
+            font-family: "DM Serif Text";
+        }
+        .value-card-back {
+            background: #379537;
+            color: white;
+            transform: rotateY(180deg);
+            font-size:18px;
+            font-weight:500;
+            font-family: "Open Sans, san serif";
+            text-align: left;
+            padding: 20px;
+        }
+        @media (max-width: 1000px) {
+            .value-card {
+                width:70%;
+                flex-direction:row;
+            }
+            .value-cards{
+                grid-template-columns: 530px;
+                justify-content: center;
+            }
+        }
+
+        </style>
+        
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="top_bar">
+            <header>
+                <a href="index.html">
+                    <div id = "img_container">
+                        <img id="logo" src="./images/nomoriginal.png">
+                    </div>
+                </a>
+                <a href="index.html"><span id="title">NomNomNom</span></a>
+            </header>
+            <!-- Navagation Bar -->
+            <nav>
+                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+                <div class="nav-links">
+                    <a href="index.html">Home </a>
+                    <a href="about.html">About </a>
+                    <a href="createadish.html">CreateaDish</a>
+                    <a href="recipe.html">Recipes</a>
+                    <a href="order.html">Order</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </nav>
+            <div id = "below_nav"></div>
+        </div>
+        <section>
+            <img src="./images/banner.jpg" alt="">
+        </section>
+        <!-- Below Top Bar -->
+        <!-- Slogan & Description -->
+        <div class="slogan">
+            <h1>Fresh meals made simple.</h1>
+            <p> NomNomNom makes meal planning easy and delicious. Choose your
+                weekly meals and get all the ingredients delivered straight to
+                your door—fresh, simple, and ready to cook. Designed to save you
+                time and stress while keeping your diet tasty and on track.
+            </p>
+        </div>
+        <!-- Call to Action Cards -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-image">
+                <img src="./images/bundle_icon2.png" alt="Bundle Icon">
+                </div>
+                <div class="card-description">
+                <h4>Select Bundle</h4>
+                <p>Find the perfect meal plan for you.</p>
+                <a href="order.html"><button>Order</button></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image-mid">
+                <img src="./images/recipe_icon.png" alt="Recipe Icon">
+                </div>
+                <div class="card-description">
+                <h4>Recipes</h4>
+                <p>Find our favorite recipes and share yours.</p>
+                <a href="recipe.html"><button>Explore</button></a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                <img src="./images/dish_icon.png" alt="Dish Icon">
+                </div>
+                <div class="card-description">
+                <h4>Create a Dish</h4>
+                <p>Create a dish with ingredients you have</p>
+                <a href="createadish.html"><button>CreateaDish</button></a>
+                </div>
+            </div>
+        </div>
+        <!-- Room Image Container -->
+        <div class="day_container">
+            <p>Perfectly Paired Ingredients</p>
+        </div>
+        <!-- Local Expertise Container -->
+        <section class="local-container">
+            <h2>Local Ingredients</h2>
+            <p>
+                With deep roots in local farming communities and a network of
+                distribution centers from coast to coast, we source the freshest
+                ingredients right from your region. By partnering with nearby
+                growers nationwide, NomNomNom brings seasonal produce and artisanal
+                goods straight to your door—celebrating local flavor and
+                sustainability in every bite.
+            </p>
+            <p>
+                Our office is located in <strong>Boston</strong>, but we deliver
+                fresh, chef‑crafted meals to every corner of the country.
+                Thanks to our nationwide shipping network, you’ll receive perfectly
+                portioned ingredients straight to your door—fresh, fast, and ready
+                whenever you are.
+            </p>.
+            </p>
+            <br>
+            <div class="local-button-container">
+                <a href="about.html"><button>Learn More</button></a>
+            </div>
+            <br><br><br>
+            <h2>Distribution Centers</h2>
+            <div class ="state-network">
+                <ul class="split-list">
+                    <li>New York</li>
+                    <li>Los Angeles</li>
+                    <li>Chicago</li>
+                </ul>
+                <ul class="split-list">
+                    <li>Phoenix</li>
+                    <li>San Diego</li>
+                    <li>Dallas</li>
+                </ul>
+                <ul class="split-list">
+                    <li>San Antonio</li>
+                    <li>Philadelphia</li>
+                    <li>Boston</li>
+                </ul>
+                <ul class="split-list">
+                    <li>Atlanta</li>
+                    <li>Seattle</li>
+                    <li>Miami</li>
+                </ul>
+            </div>
+        </section>
+        <br>
+        <!-- Offices Slider -->
+        <div class="slider-container">
+            <button class="prev">←</button>
+            <div class="slider-inner">
+                <img src="./images/dish1.png" class="slider-item">
+                <img src="./images/dish2.png" class="slider-item">
+                <img src="./images/dish3.png" class="slider-item">
+                <img src="./images/dish4.png" class="slider-item">
+                <img src="./images/dish5.png" class="slider-item">
+                <img src="./images/dish6.png" class="slider-item">
+                <img src="./images/dish7.png" class="slider-item">                
+            </div>
+            <button class="next">→</button>
+        </div>
+        <!-- Slogan & Description -->
+        <div class="values">
+            <h1>Our Values</h1>
+            <p> At NomNomNom, our core values of freshness, convenience, and care
+                guide everything we do — from sourcing quality ingredients to delivering
+                meals that fit your lifestyle. We're committed to making every bite
+                satisfying, simple, and stress-free.
+            </p>
+        </div>
+        <!-- Value Cards -->
+        <div class="value-cards">
+            <div class="value-card">
+                <div class="value-card-inner">
+                <div class="value-card-front">Freshness</div>
+                <div class="value-card-back">We use only the highest-quality,
+                    seasonal ingredients to ensure every meal tastes like it was
+                    made just for you.
+                </div>
+                </div>
+            </div>
+            <div class="value-card">
+                <div class="value-card-inner">
+                <div class="value-card-front">Sustainability</div>
+                <div class="value-card-back">From sourcing to packaging, we’re
+                    committed to eco-friendly practices that care for both people
+                    and the planet.
+                </div>
+                </div>
+            </div>
+            <div class="value-card">
+                <div class="value-card-inner">
+                <div class="value-card-front">Simplicity</div>
+                <div class="value-card-back">We make mealtime effortless with
+                    thoughtfully designed menus and a seamless delivery experience
+                    that fits your lifestyle.
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer>
+            <p>©NomNomNom &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+                &nbsp; <a href="mailto:nomnomnom@gmail.com">nomnomnom@gmail.com</a></p>
+        </footer>
+        <script>
+            $(document).ready(function () {
+              let currentIndex = 0;
+              const totalImages = $('.slider-item').length;
+            
+              function getVisibleImages() {
+                const w = $(window).width();
+                if (w <= 768)        return 1;
+                else if (w <= 1100)  return 2;
+                else if (w <= 1600)  return 3;
+                else                  return 4;
+              }
+            
+              function updateSlider() {
+                const visible = getVisibleImages();
+                const containerWidth = $('.slider-container').width();
+                const imageWidth = containerWidth / visible;
+                $('.slider-item').css('width', imageWidth + 'px');
+            
+                const maxIndex = Math.max(0, totalImages - visible);
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                $('.slider-inner').css(
+                  'transform',
+                  'translateX(' + (-currentIndex * imageWidth) + 'px)'
+                );
+              }
+            
+              $('.next').click(function () {
+                const visible   = getVisibleImages();
+                const maxIndex  = Math.max(0, totalImages - visible);
+                if (currentIndex < maxIndex){
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // wrap around
+                }
+                updateSlider();
+              });
+              $('.prev').click(function () {
+                const visible   = getVisibleImages();
+                    const maxIndex  = Math.max(0, totalImages - visible);
+                    if (currentIndex > 0){
+                        currentIndex--;
+                    } else {
+                        currentIndex = maxIndex; // wrap around
+                    }
+                    updateSlider();
+              });
+              $(window).resize(updateSlider);
+            
+              // Initialize + auto‑slide
+              updateSlider();
+              let slideInterval = setInterval(() => $('.next').click(), 4000);
+            });
+            </script>            
+    </body>
+    <script src="script.js"></script>
+</html>

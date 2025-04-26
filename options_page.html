@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NomNomNom</title>
+    <!-- Link to external style sheet -->
+    <link rel="stylesheet" href="styles.css">
+     <!-- Link to external style sheet -->
+     <!-- <link rel="stylesheet" href="order.css"> -->
+    <!-- For Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+    <!-- For JQuery usage -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
+    <!--Font Styles-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap,
+    wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+    rel="stylesheet">
+    <!-- For responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        section { 
+            display: flex;
+            flex-direction: row;
+         
+            height: 500px;
+            padding: 100px;
+            font-family: DM Serif Text;
+            
+        }
+        #sidebar { 
+            /* background-color: aquamarine; */
+            margin: 50px 0px 0px 0px; 
+            width : 40%;
+            height: 100px;
+        }
+        #cooking_info{ 
+            margin: 50px 0px 0px 0px; 
+            padding: 0px 40px 0px 40px;
+            /* background-color: brown; */
+            width: 60%;
+            height: 100px;
+        }
+
+        #options_div  img{ 
+            width: 90%; 
+           border-radius: 10px;
+        }
+
+        #cooking_info { 
+            
+        }
+
+        .form_buttons { 
+            display: flex;
+            flex-direction: row;
+            margin: 5px 0px;
+        }
+
+
+        .box { 
+            border: 2px #379537 solid;
+            width: 60px;
+            height: 30px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 7px 7px 7px 0px;
+        }
+    
+        .times_outer { 
+            margin: 10px;
+        }
+
+        .times.selected{ 
+            background-color: #379537;
+            color: white;
+        }
+
+        .meals.selected{ 
+            background-color: #379537;
+            color: white;
+        }
+
+        .people.selected { 
+            background-color: #379537;
+            color: white;
+        }
+
+        .times_outer span { 
+            
+            width : 60px;
+            /* border: 2px solid black; */
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="top_bar">
+        <header>
+            <a href="index.html">
+                <div id = "img_container">
+                    <img id="logo" src="./images/nomoriginal.png">
+                </div>
+            </a>
+            <a href="index.html"><span id="title">NomNomNom</span></a>
+        </header>
+        <!-- Navagation Bar -->
+        <nav>
+            <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+            <div class="nav-links">
+                <a href="index.html">Home </a>
+                <a href="about.html">About </a>
+                <a href="createadish.html">CreateaDish</a>
+                <a href="recipes.html">Recipes</a>
+                <a href="order.html">Order</a>
+                <a href="login.html">Login</a>
+            </div>
+        </nav>
+        <div id = "below_nav"></div>
+    </div>
+    
+
+    <section id="first_section">
+        <div id = "sidebar">
+            <div id = "options_div">
+                <img src="images/budget_pg.jpg" alt="">
+            </div>
+            <div id = "contents">t
+            </div>
+
+        </div>
+        <div id = "cooking_info">
+            <form action="" id = "freq_info">
+                
+                How many days a week do you cook? </br>
+                <div id="times_per_wk" class = "form_buttons"> 
+                </div>
+
+                How many meals do you cook per day? 
+                <div id = "meals_per_day" class = "form_buttons">
+                </div>
+
+                How many people do you cook for per day? 
+                <div id = "num_people" class = "form_buttons">
+                </div>
+             
+             
+            </form>
+            
+        </div>
+    </section>
+
+    <script>
+        // Parse the URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const selectedImg = params.get("selected_img");
+
+        if (selectedImg) {
+            // Optional: Log it to make sure it's being read
+            console.log("Selected Option:", selectedImg);
+
+            // Update the image dynamically
+            $("#options_div img").attr("src", `images/${selectedImg}_op.jpg`);
+            
+        } else {
+            console.log("No selected_img query parameter found.");
+        }
+    </script>
+  
+
+
+    <script> 
+        //   <!-- How many days a week do you cook?  -->
+        var times_per_wk = $("#times_per_wk")
+        for(i= 0; i < 5; i+=2){ 
+            var times_outer = $("<div class= 'times_outer'  ></div>")
+            
+            times_per_wk.append(times_outer)
+            var input = $("<input>", { 
+                type: 'button',
+                class: 'box times',
+                id: 'time_option' + i,
+                name: "choose_time",
+            }); 
+            times_outer.append(input)
+            if(i == 4) { 
+                times_outer.append("</br><span>All week </span>")
+            } else { 
+                times_outer.append("</br><span>" + (i+1) + "-" + (i + 3) + "</span>")
+            }
+        }
+
+       
+
+        //How many meals do you cook per day? 
+
+        var times_per_wk = $("#meals_per_day")
+        for(i= 1; i <= 3; i+=1){ 
+            var times_outer = $("<div class= 'times_outer' ></div>")
+            
+            times_per_wk.append(times_outer)
+            var input = $("<input>", { 
+                type: 'button',
+                class: 'box meals',
+                id: 'meal_option' + i,
+                name: "choose_meal",
+            }); ; 
+            times_outer.append(input)
+            if (i == 1) { 
+                times_outer.append("</br><span>once </span>")
+            } else { 
+                times_outer.append("</br><span>" + i + " </span>")
+            }
+            
+        }
+
+        //How many people do you cook for? 
+
+        var times_per_wk = $("#num_people")
+        for(i= 0; i < 5; i+=2){ 
+            var times_outer = $("<div class= 'times_outer' ></div>")
+            
+            times_per_wk.append(times_outer)
+            var input = $("<input>", { 
+                type: 'button',
+                class: 'box people',
+                id: 'pep_option' + i,
+                name: "choose_people",
+            }); 
+            times_outer.append(input)
+            times_outer.append("</br><span>" + (i+1) + "-" + (i + 3) + " </span>")
+        }
+        
+        //Note stop setting onclick dynamically instead it will not run properly. 
+        //The function will always be executed at page rendering even before you need it. 
+
+        $(document).on('click', '.box', function () { 
+            const groupClass = $(this).attr('class').split(' ')[1]; //Get class 2
+            console.log(groupClass)
+            $('.' + groupClass).removeClass('selected');
+            $(this).addClass('selected'); 
+            localStorage.setItem('selectedOption_' + groupClass, $(this).text());
+
+        })
+        console.log($(freq_info).html())
+    </script>
+
+
+   
+    <!-- Footer -->
+    <footer>
+        <p>©PropertyPath &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+            &nbsp; <a href="mailto:propertypath@gmail.com">
+                propertypath@gmail.com</a></p>
+    </footer>
+</body>
+</html>
