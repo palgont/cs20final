@@ -152,13 +152,12 @@
         document.getElementById('recipeForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             const formData = new FormData(this);
-            const id = 1;
             const title = formData.get('title');
             const ingredients = formData.getAll('ingredients[]');
             const procedure = formData.getAll('steps[]');
             const author_id = "Unknown";
 
-            const recipe = { id, title, ingredients, procedure, author_id };
+            const recipe = { title, ingredients, procedure, author_id };
 
             try {
                 const res = await fetch('/submit', {
