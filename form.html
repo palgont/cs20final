@@ -158,15 +158,21 @@
 
             const recipe = { title, ingredients, steps };
 
-            const res = await fetch('/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(recipe)
-            });
-            
-            window.location.href = '/recipe.html';
+            try {
+                const res = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(recipe)
+                });
+
+                if (res.ok) {
+                    window.location.href = '/recipe.html';
+                }
+            } catch (error) {
+                console.error('Error submitting recipe:', error);
+            }
         });
     </script>
 </html>
