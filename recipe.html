@@ -16,6 +16,10 @@
         rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
         rel="stylesheet">
+        <!-- Google Sign-In client library -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- Our script to load nav and handle sign-in -->
+        <script src="nav.js" defer></script>
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -106,17 +110,8 @@
                 <a href="index.html"><span id="title">NomNomNom</span></a>
             </header>
             <!-- Navagation Bar -->
-            <nav>
-                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
-                <div class="nav-links">
-                        <a href="index.html">Home </a>
-                        <a href="about.html">About </a>
-                        <a href="createadish.html">CreateaDish</a>
-                        <a href="recipe.html">Recipes</a>
-                        <a href="order.html">Order</a>
-                        <a href="login.html">Login</a>
-                </div>
-            </nav>
+            <div id="nav-placeholder"></div>
+
             <div id = "below_nav"></div>
         </div>
         <section>

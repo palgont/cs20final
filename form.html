@@ -154,9 +154,10 @@
             const formData = new FormData(this);
             const title = formData.get('title');
             const ingredients = formData.getAll('ingredients[]');
-            const steps = formData.getAll('steps[]');
+            const procedure = formData.getAll('steps[]');
+            const author_id = "Unknown";
 
-            const recipe = { title, ingredients, steps };
+            const recipe = { title, ingredients, procedure, author_id };
 
             try {
                 const res = await fetch('/submit', {
