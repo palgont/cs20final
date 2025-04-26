@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 app.use(express.static(__dirname));
 const URL = 'mongodb+srv://mayhaali:SsLi5KuHuTDNaWK6@cluster0.j8ysx6r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const { MongoClient } = require('mongodb');
@@ -18,12 +19,17 @@ MongoClient.connect(URL)
   })
   .catch(err => console.error('MongoDB connection error:', err));
 
-// route for the homepage
+// route for the recipes page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'recipe.html'));
 });
 
-// fetch all data
+// route for the form
+app.get('/form.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'form.html'));
+});
+
+// fetch recipes
 app.get('/data', async (req, res) => {
   try {
     const recipes = await collection.find().toArray();
@@ -31,4 +37,11 @@ app.get('/data', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recipes' });
   }
+});
+
+// Handle form submission
+app.post('/submit', async (req, res) => {
+  const recipe = req.body;
+  await collection.insertOne(recipe);
+  res.status(200).send('Recipe saved');
 });
