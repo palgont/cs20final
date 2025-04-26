@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- URL: http://localhost:5500/midterm/index.html -->
+        <title>NomNomNom</title>
+        <!-- Link to external style sheet -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- For Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+        <!-- For JQuery usage -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <!--Font Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+        <!-- For responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                text-align: center;
+            }
+
+            button {
+                padding: 10px 30px;
+                width: 180px;
+                background-color: #50affd;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                margin: 5px;
+            }
+
+            .remove{
+                padding: 5px 15px 5px 10px;
+                width: 20px;
+                background-color: #50affd;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                margin: 5px;
+            }
+
+            button:hover {
+                background-color: #2781d0;
+            }
+
+            form {
+                background-color: white;
+                width: 20%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px;
+                border-radius: 20px;
+                border: solid #50affd 5px;
+            }
+
+            section img { 
+                width: 100%;
+                object-fit: cover;
+                padding: 80px;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="top_bar">
+            <!-- Header -->
+            <header>
+                <a href="index.html">
+                    <div id = "img_container">
+                        <img id="logo" src="images/nomoriginal.png">
+                    </div>
+                </a>
+                <a href="index.html"><span id="title">NomNomNom</span></a>
+            </header>
+            <!-- Navagation Bar -->
+            <nav>
+                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+                <div class="nav-links">
+                        <a href="index.html">Home </a>
+                        <a href="about.html">About </a>
+                        <a href="createadish.html">CreateaDish</a>
+                        <a href="recipe.html">Recipes</a>
+                        <a href="order.html">Order</a>
+                        <a href="login.html">Login</a>
+                </div>
+            </nav>
+            <div id = "below_nav"></div>
+        </div>
+        <section>
+            <img src="./images/bg2.jpg" alt="">
+        </section>
+
+        <!-- Form -->
+        <form id="recipeForm">
+            <h2>Create Recipe</h2>
+
+            <label>Title:</label><br>
+            <input type="text" name="title" required><br><br>
+
+            <label>Ingredients:</label><br>
+            <div id="ingredients-list">
+                <input type="text" name="ingredients[]" placeholder="Ingredient" required>
+            </div>
+            <button type="button" onclick="addIngredient()">+ Add Ingredient</button><br><br>
+
+            <label>Procedure:</label><br>
+            <div id="steps-list">
+                <input type="text" name="steps[]" placeholder="Step" required>
+            </div>
+            <button type="button" onclick="addStep()">+ Add Step</button><br><br>
+
+            <button type="submit">Submit Recipe</button>
+        </form>
+    </body>
+
+    <script>
+        function addIngredient() {
+            const container = document.getElementById('ingredients-list');
+            const entry = document.createElement('div');
+            entry.className = 'ingredient-entry';
+            entry.innerHTML = `
+                <input type="text" name="ingredients[]" placeholder="Ingredient" required>
+                <button type="button" onclick="removeIngredient(this)" class="remove">-</button>
+            `;
+            container.appendChild(entry);
+        }
+        function removeIngredient(button) {
+            button.parentElement.remove();
+        }
+
+        function addStep() {
+            const container = document.getElementById('steps-list');
+            const entry = document.createElement('div');
+            entry.className = 'step-entry';
+            entry.innerHTML = `
+                <input type="text" name="steps[]" placeholder="Step" required>
+                <button type="button" onclick="removeStep(this)" class="remove">-</button>
+            `;
+            container.appendChild(entry);
+        }
+        function removeStep(button) {
+            button.parentElement.remove();
+        }
+
+        // Handle form submit
+        document.getElementById('recipeForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const title = formData.get('title');
+            const ingredients = formData.getAll('ingredients[]');
+            const steps = formData.getAll('steps[]');
+
+            const recipe = { title, ingredients, steps };
+
+            try {
+                const res = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(recipe)
+                });
+
+                if (res.ok) {
+                    window.location.href = '/recipe.html';
+                }
+            } catch (error) {
+                console.error('Error submitting recipe:', error);
+            }
+        });
+    </script>
+</html>
