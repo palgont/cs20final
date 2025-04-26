@@ -81,6 +81,13 @@
                 cursor: pointer;
                 font-size: 16px;
             }
+
+            /* recipe results */
+            .recipe-results{
+                text-align: center;
+                align-items: center;
+
+            }
             
         </style>
         
@@ -103,7 +110,7 @@
                         <a href="index.html">Home </a>
                         <a href="about.html">About </a>
                         <a href="createadish.html">CreateaDish</a>
-                        <a href="recipes.html">Recipes</a>
+                        <a href="recipe.html">Recipes</a>
                         <a href="order.html">Order</a>
                         <a href="login.html">Login</a>
                 </div>
@@ -114,9 +121,12 @@
              <img src="./images/chopping_board.jpg" alt="banner image">
         </section>
 
-        <!-- About Us -->
+        <!-- Title & Description -->
         <section class="top-description">
             <h1>CreateaDish</h1>
+            <p>
+
+            </p>
             <p>
                 Enter ingredients you have at home to find delicious recipes you
                 can make.
@@ -237,6 +247,7 @@
                    style="max-width:100%;height:auto;border-radius:8px;" />
               <p>Used ingredients: ${recipe.usedIngredientCount}</p>
               <p>Missing ingredients: ${recipe.missedIngredientCount}</p>
+              <p>Instructions: ${recipe.instruction}</p>
             `;
             resultsDiv.appendChild(card);
           });
