@@ -60,18 +60,20 @@ nav a:hover{
         color:#fff;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
 /* google style for buttons */
 #gSignInBtn, #signoutBtn {
     background-color: white;
     color: #379537;
     font-family: "Open Sans", sans-serif;
-    font-size: 20px;
-    padding: 10px 20px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 400;
+    margin-left: 20px;
+    display: inline-block;
+    /* padding: 10px 20px; */
+    /* font-weight: 400; */
 }
 
 /* Hover effects */

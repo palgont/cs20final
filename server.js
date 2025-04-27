@@ -1,26 +1,33 @@
 const express = require('express');
 const app = express();
+const { MongoClient, ObjectId } = require('mongodb');
 app.use(express.json());
 app.use(express.static(__dirname));
 const URL = 'mongodb+srv://mayhaali:SsLi5KuHuTDNaWK6@cluster0.j8ysx6r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const { MongoClient } = require('mongodb');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-let db, collection;
+let db, recipesCollection, usersCollection;
 
 // Connect to MongoDB and start the server
 MongoClient.connect(URL)
   .then(client => {
     db = client.db('cookbook');
-    collection = db.collection('recipes');
-    app.listen(PORT);
+    usersCollection = db.collection('users');
+    recipesCollection = db.collection('recipes');
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
   })
   .catch(err => console.error('MongoDB connection error:', err));
 
 // route for the recipes page
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/recipe.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'recipe.html'));
 });
 
@@ -32,7 +39,7 @@ app.get('/form.html', (req, res) => {
 // fetch recipes
 app.get('/data', async (req, res) => {
   try {
-    const recipes = await collection.find().toArray();
+    const recipes = await recipesCollection.find().toArray();
     res.json(recipes);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recipes' });
@@ -42,6 +49,44 @@ app.get('/data', async (req, res) => {
 // Handle form submission
 app.post('/submit', async (req, res) => {
   const recipe = req.body;
-  await collection.insertOne(recipe);
+  await recipesCollection.insertOne(recipe);
   res.status(200).send('Recipe saved');
+});
+
+// Save user after login
+app.post('/saveUser', async (req, res) => {
+  const { id, email, name } = req.body;
+  if (!id) return res.status(400).send('Missing user ID');
+
+  await usersCollection.updateOne(
+    { _id: id }, 
+    { $setOnInsert: { email, name, bookmarked_recipes: [] }},
+    { upsert: true }
+  );
+  res.sendStatus(200);
+});
+
+// Bookmark recipe
+app.post('/bookmark', async (req, res) => {
+  const { userId, recipeId } = req.body;
+  if (!userId || !recipeId) {
+    return res.status(400).send('Missing parameters');
+  }
+
+  await usersCollection.updateOne(
+    { _id: userId },
+    { $addToSet: { bookmarked_recipes: new ObjectId(recipeId) } }
+  );
+  res.sendStatus(200);
+});
+
+// Get bookmarks
+app.get('/bookmarks/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  const user = await usersCollection.findOne({ _id: userId });
+  if (!user) return res.status(404).send('User not found');
+
+  const bookmarks = await recipesCollection.find({ _id: { $in: user.bookmarked_recipes }}).toArray();
+  res.json(bookmarks);
 });

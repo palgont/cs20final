@@ -5,6 +5,10 @@
         <title>NomNomNom</title>
         <!-- Link to external style sheet -->
         <link rel="stylesheet" href="styles.css">
+        <!-- Google Sign-In client library -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- Our script to load nav and handle sign-in -->
+        <script src="nav.js" defer></script>
         <!-- For Favicon -->
         <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
         <!-- For JQuery usage -->
@@ -79,17 +83,8 @@
                 <a href="index.html"><span id="title">NomNomNom</span></a>
             </header>
             <!-- Navagation Bar -->
-            <nav>
-                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
-                <div class="nav-links">
-                        <a href="index.html">Home </a>
-                        <a href="about.html">About </a>
-                        <a href="createadish.html">CreateaDish</a>
-                        <a href="recipe.html">Recipes</a>
-                        <a href="order.html">Order</a>
-                        <a href="login.html">Login</a>
-                </div>
-            </nav>
+            <div id="nav-placeholder"></div>
+            
             <div id = "below_nav"></div>
         </div>
         <section>
@@ -155,7 +150,7 @@
             const title = formData.get('title');
             const ingredients = formData.getAll('ingredients[]');
             const procedure = formData.getAll('steps[]');
-            const author_id = "Unknown";
+            const author_id =  localStorage.getItem('nom_nom_nom_id') || "Unknown";
 
             const recipe = { title, ingredients, procedure, author_id };
 
