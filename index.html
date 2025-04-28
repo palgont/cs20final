@@ -6,6 +6,10 @@
         <title>NomNomNom</title>
         <!-- Link to external style sheet -->
         <link rel="stylesheet" href="styles.css">
+        <!-- Google Sign-In client library -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- Our script to load nav and handle sign-in -->
+        <script src="nav.js" defer></script>
         <!-- For Favicon -->
         <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
         <!-- For JQuery usage -->
@@ -19,7 +23,6 @@
         rel="stylesheet">
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <style>
         html {
             overflow-x:hidden;
@@ -399,17 +402,8 @@
                 <a href="index.html"><span id="title">NomNomNom</span></a>
             </header>
             <!-- Navagation Bar -->
-            <nav>
-                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
-                <div class="nav-links">
-                    <a href="index.html">Home </a>
-                    <a href="about.html">About </a>
-                    <a href="createadish.html">CreateaDish</a>
-                    <a href="recipe.html">Recipes</a>
-                    <a href="order.html">Order</a>
-                    <a href="login.html">Login</a>
-                </div>
-            </nav>
+            <div id="nav-placeholder"></div>
+
             <div id = "below_nav"></div>
         </div>
         <section>
@@ -434,7 +428,7 @@
                 <div class="card-description">
                 <h4>Select Bundle</h4>
                 <p>Find the perfect meal plan for you.</p>
-                <a href="order.html"><button>Order</button></a>
+                <a href="order.html"><button id="orderButton">Order</button></a>
                 </div>
             </div>
             <div class="card">
@@ -624,5 +618,4 @@
             });
             </script>            
     </body>
-    <script src="script.js"></script>
 </html>

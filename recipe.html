@@ -16,6 +16,10 @@
         rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
         rel="stylesheet">
+        <!-- Google Sign-In client library -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- Our script to load nav and handle sign-in -->
+        <script src="nav.js" defer></script>
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -106,17 +110,8 @@
                 <a href="index.html"><span id="title">NomNomNom</span></a>
             </header>
             <!-- Navagation Bar -->
-            <nav>
-                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
-                <div class="nav-links">
-                        <a href="index.html">Home </a>
-                        <a href="about.html">About </a>
-                        <a href="createadish.html">CreateaDish</a>
-                        <a href="recipe.html">Recipes</a>
-                        <a href="order.html">Order</a>
-                        <a href="login.html">Login</a>
-                </div>
-            </nav>
+            <div id="nav-placeholder"></div>
+
             <div id = "below_nav"></div>
         </div>
         <section>
@@ -150,17 +145,50 @@
             .then(data => {
                 const container = document.getElementById('recipe-list');
                 data.forEach(recipe => {
-                const div = document.createElement('div');
-                div.innerHTML = `<div class="question">${recipe.title}</div>
-                                 <div class="answer">
-                                    <p>Ingredients: <p>
-                                    <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
-                                    <p>Procedure: <p>
-                                    <ol>${recipe.procedure.map(procedure => `<li>${procedure}</li>`).join("")}</ol>
-                                 </div>`;
-                container.appendChild(div);
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                    <div class="question">${recipe.title}</div>
+                    <div class="answer">
+                        <p>Ingredients:</p>
+                        <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
+                        <p>Procedure:</p>
+                        <ol>${recipe.procedure.map(step => `<li>${step}</li>`).join("")}</ol>
+                        <button class="bookmark-btn" data-id="${recipe._id}">Bookmark</button>
+                    </div>
+                    `;
+                    container.appendChild(div);
+                });
+
+                // After recipes are loaded, attach event listeners for Bookmark buttons
+                const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+                bookmarkButtons.forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                    const recipeId = e.target.getAttribute('data-id');
+                    const userId = localStorage.getItem('nom_nom_nom_id');
+
+                    if (!userId) {
+                        alert('Please sign in to bookmark recipes.');
+                        return;
+                    }
+
+                    try {
+                        const res = await fetch('/bookmark', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ userId, recipeId })
+                        });
+                        if (res.ok) {
+                        alert('Recipe bookmarked successfully!');
+                        } else {
+                        alert('Failed to bookmark recipe.');
+                        }
+                    } catch (error) {
+                        console.error('Error bookmarking recipe:', error);
+                    }
+                    });
                 });
             })
+
             .catch(err => console.error('Failed to fetch recipes:', err));
             
             // jQuery Script for Expanding Recipes
@@ -170,7 +198,49 @@
                     $(".answer").not($(this).next()).slideUp();
                 });
             });
+            // Handle See Bookmarks button
+            const seeBookmarksBtn = document.querySelector('.buttons .button:nth-child(2)');
+            if (seeBookmarksBtn) {
+                seeBookmarksBtn.addEventListener('click', async () => {
+                    const userId = localStorage.getItem('nom_nom_nom_id');
+                    if (!userId) {
+                    alert('Please sign in to see bookmarks.');
+                    return;
+                    }
+
+                    try {
+                    const res = await fetch(`/bookmarks/${userId}`);
+                    if (!res.ok) {
+                        alert('Failed to load bookmarks.');
+                        return;
+                    }
+                    const bookmarks = await res.json();
+
+                    const container = document.getElementById('recipe-list');
+                    container.innerHTML = '<h2>My Bookmarked Recipes</h2>'; // Clear old recipes
+                    if (bookmarks.length === 0) {
+                        container.innerHTML += '<p>You have no bookmarked recipes yet!</p>';
+                    }
+
+                    bookmarks.forEach(recipe => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                        <div class="question">${recipe.title}</div>
+                        <div class="answer">
+                            <p>Ingredients:</p>
+                            <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
+                            <p>Procedure:</p>
+                            <ol>${recipe.procedure.map(step => `<li>${step}</li>`).join("")}</ol>
+                        </div>
+                        `;
+                        container.appendChild(div);
+                    });
+                    } catch (error) {
+                    console.error('Error fetching bookmarks:', error);
+                    }
+                });
+            }
+
         </script>
     </body>
-    <script src="script.js"></script>
 </html>

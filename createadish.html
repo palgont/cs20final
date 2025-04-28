@@ -18,6 +18,11 @@
         rel="stylesheet">
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Google Sign-In client library -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- Our script to load nav and handle sign-in -->
+        <script src="nav.js" defer></script>
         <style>
             section img { /*top banner image*/
                 width: 100%;
@@ -158,17 +163,8 @@
                 <a href="index.html"><span id="title">NomNomNom</span></a>
             </header>
             <!-- Navagation Bar -->
-            <nav>
-                <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
-                <div class="nav-links">
-                        <a href="index.html">Home </a>
-                        <a href="about.html">About </a>
-                        <a href="createadish.html">CreateaDish</a>
-                        <a href="recipe.html">Recipes</a>
-                        <a href="order.html">Order</a>
-                        <a href="login.html">Login</a>
-                </div>
-            </nav>
+            <div id="nav-placeholder"></div>
+            
             <div id = "below_nav"></div>
         </div>
         <section>
@@ -411,6 +407,11 @@
       });
     })();
   </script>  
+<<<<<<< HEAD
     
   </body>
+=======
+        
+    </body>
+>>>>>>> c15cdeeebfc470d07055cdf26a7e88d8c2d79413
 </html>

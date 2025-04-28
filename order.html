@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NomNomNom</title>
+        <!-- Link to external style sheet -->
+        <link rel="stylesheet" href="styles.css">
+         <!-- Link to external style sheet -->
+         <link rel="stylesheet" href="order.css">
+        <!-- For Favicon -->
+        <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+        <!-- For JQuery usage -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+        <!--Font Styles-->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap,
+        wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+        rel="stylesheet">
+        <!-- For responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google Sign-In client library -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- Our script to load nav and handle sign-in -->
+        <script src="nav.js" defer></script>
+        <style>
+
+        </style>
+             
+    </head>
+    <script>
+        function toggleMenu() {
+            $(".nav-links").toggleClass("active");
+
+            if ($(".nav-links").hasClass("active")) {
+                $(".nav-links").css({ "position": "absolute", "z-index": "1200", "top": "50px", "left": "0", "width": "100%" });
+            } else {
+                $(".nav-links").css({ "position": "relative" });
+            }
+        }
+
+    </script>
+    <body>
+        <!-- Header -->
+        <div id="top_bar">
+            <header>
+                <a href="index.html">
+                    <div id = "img_container">
+                        <img id="logo" src="./images/nomoriginal.png">
+                    </div>
+                </a>
+                <a href="index.html"><span id="title">NomNomNom</span></a>
+            </header>
+            <!-- Navagation Bar -->
+            <div id="nav-placeholder"></div>
+
+            <div id = "below_nav"></div>
+        </div>
+
+        <section id="first_section" >
+           <div id ="land_note" >Please select a NomNomNom subscription category to purchase</div>
+
+           <form name='get_div_id' action="/options_page.html" method="get" id = "get_div_id">
+           <input type= "hidden" name = "selected_img" id = "get_selected_img" value = "">
+           </form>
+        </section>
+
+        <script> 
+            var options_div = $("<div id = 'food_options'></div>")
+            
+            var options_array = ["budget", "custom", "halal", "high protein", "kosher", "paleo", "vegan", "vegetarian"]
+            options_array.forEach((option)=> { 
+                //Note that anchor tag overides form processing
+                // var div_link = $("<a href= 'options_page.html' class = 'div_link'></a>")
+             
+                var new_option = $("<div>" , { 
+                    id: option, 
+                    class:  'meal_options'
+                });
+
+                new_option.on('click', function() { 
+                    console.log("In option function")
+                    console.log(option);
+                    $("#get_selected_img").val(option); 
+                    console.log("Get selected img", $("#get_selected_img").val());
+                    $("#get_div_id").submit();
+                } )
+             
+                var image_path = option + ".png"
+                // if(option == "vegan") {
+                //     var image_path = option + ".jpg"
+                // }
+                new_option.html(" <img  class = 'option_img'src = 'images/"+ 
+                                image_path +" ' ></br> <p class='option_tag'>" + option+ "</p>")
+
+                // div_link.append()
+                options_div.append(new_option)
+                
+            })
+            $('#first_section').append(options_div)
+
+            var progress_bar = $("<div id = 'progress_bar'></div>")
+            $('#first_section').append(progress_bar)
+            var progress_bar_inner = $("<div id ='progress_bar_in'></div>")
+            $('#progress_bar').append(progress_bar_inner)
+
+            // function getImg ( option){
+            //     console.log("In option function")
+            //     console.log(option);
+            //     $("#get_selected_img").val(option); 
+            //     $("#get_div_id").submit();
+            // }
+        </script>
+        
+        <!-- Footer -->
+        <footer>
+            <p>©PropertyPath &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+                &nbsp; <a href="mailto:propertypath@gmail.com">
+                    propertypath@gmail.com</a></p>
+        </footer>
+    </body>
+</html>
