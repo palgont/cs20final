@@ -77,6 +77,43 @@
                 display: block;
             }
 
+            .waste {
+                height:auto;
+                font-family: "DM Serif Text";
+                font-size: 24px;
+                
+            }
+            .waste h2 {
+                padding-left:55vw;
+                font-size: 3rem;
+                margin-top: 3.5rem;
+            }
+            .waste p {
+                padding-left: 15vw;
+                padding-right:10vw;
+            }
+            .waste-img-container {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin:auto;
+            }
+            .waste img {
+                border: solid 2px #b2b2b222;
+                border-radius: 6px;
+                max-height:800px;
+                max-width: 650px;
+            }
+
+            @media(max-width: 800px) {
+                .waste h2 {
+                    padding-left: 25vw;
+                }
+                .waste img{
+                    height: 300px;
+                    width: 450px;
+                }
+            }
             .qanda-container {
                 max-width: 800px;
                 margin: 40px auto;
@@ -174,6 +211,17 @@
             <div class = nutrition-img>
                 <img src="./images/nutrition2.jpg" alt="Nutrition Image">
             </div>
+        </div>
+
+
+        <!-- Food Waste Facts -->
+        <div class="waste">
+            <h2>Food Waste</h2>
+            <p>Americans discard more food than any other country, nearly 40
+                million tons — or 30-40 percent of the entire US food supply.</p>
+                <div class="waste-img-container">
+                    <img src="./images/waste.jpg" alt="waste-image">
+                </div>
         </div>
 
         <!-- Q&A Section -->

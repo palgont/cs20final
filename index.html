@@ -152,10 +152,10 @@
         /* Call to Action Cards Responsiveness */
         @media (max-width:1100px) {
             .card {
-                width:90%;
+                width:70%;
                 flex-direction:row;
                 margin:10px;
-                padding-right:70px;
+                padding-right:80px;
                 
             }
             .card-container{
@@ -163,23 +163,47 @@
                 justify-content: center;
             }
         }
-        @media (max-width:450px) {
+        @media (max-width: 450px) {
+            /* Full-width single column grid, centered */
+            .card-container {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+                margin: 0 auto;
+            }
+
             .card {
-                width: 72%;
-                flex-direction:row;
-                margin:10px;
-                
+                width: 100%;
+                max-width: none;
+                margin: 0 auto;
+                padding: 12px;
+                flex-direction: column;
             }
-            .card-container{
-                grid-template-columns: 530px;
-                justify-content: center;
+
+            /* Images scale down to fit */
+            .card img,
+            .card-image-mid img {
+                width: 100%;
+                height: auto;
+                max-height: 180px;
             }
-            li {
-                margin-right:0px;
-                padding-right:8px;
-                font-size:12px;
+
+            .card-description h4 {
+                font-size: 1.2rem;  
+            }
+            .card-description p {
+                font-size: 0.9rem;  
+                margin: 0.5rem 0;
+            }
+            .card button {
+                width: 100px;
+                height: 32px;
+                font-size: 0.875rem;
+                line-height: 32px;
             }
         }
+
         @media (max-width:1200px) {
             .day_container p {
                 top:60%;
@@ -347,7 +371,7 @@
             transition: transform 0.8s;
             transform-style:preserve-3d;
         }
-        .value-card:hover .value-card-inner {
+        .value-card:hover .value-card-inner,  .value-card:focus, .card:active{
             transform: rotateY(180deg);
         }
         .value-card-front, .value-card-back {
