@@ -59,6 +59,31 @@ nav a:hover{
         background-color:#50affd;
         color:#fff;
 }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+/* google style for buttons */
+#gSignInBtn, #signoutBtn {
+    background-color: white;
+    color: #379537;
+    font-family: "Open Sans", sans-serif;
+    margin-left: 20px;
+    display: inline-block;
+    /* padding: 10px 20px; */
+    /* font-weight: 400; */
+}
+
+/* Hover effects */
+#gSignInBtn:hover, #signoutBtn:hover {
+    background-color: #50affd;
+    color: #fff;
+}
+
+
+
 #below_nav{ 
     width: 100%;
     background-color: #032030;
