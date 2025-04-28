@@ -64,16 +64,13 @@
 }
 
 #land_note{ 
-    padding: 140px 45px 0px 0px;
+    padding: 170px 65px 0px 0px;
 
     font-size: 30px;
     font-family: DM Serif Text;
     text-align: center;
 }
 
-footer { 
-    position: relative;
-    bottom: 0;
-}
+
 
 /*****************************************************Single option order page*/

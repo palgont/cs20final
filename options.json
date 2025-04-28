@@ -1,44 +1,46 @@
-[
-    { 
-        "name" : "Budget", 
-        "description": "Affordable and nutritious meals designed to maximize savings while providing delicious flavors and wholesome ingredients. Expect staples like rice, pasta, canned beans, seasonal vegetables, eggs, chicken thighs, and budget-friendly proteins to keep costs low while ensuring satisfying meals.",
-        "img_path": "budget_pg.jpg"
-    },
-    { 
-        "name" : "Custom", 
-        "description": "A fully personalized grocery plan tailored to your preferences, dietary needs, and favorite flavors. Choose from a variety of proteins, vegetables, grains, and specialty items like seafood, gourmet cheeses, exotic spices, and organic produce to craft a plan that fits your lifestyle.",
-        "img_path": ""
-    },
-    { 
-        "name" : "Halal", 
-        "description": "- **Halal**: A selection of meals prepared in accordance with halal dietary laws, ensuring high-quality ingredients and ethical sourcing. Includes halal-certified meats such as chicken, beef, and lamb, along with fresh vegetables, dairy products, grains, and halal snacks for a balanced diet.",
-        "img_path": ""
-    },
-    { 
-        "name" : "High Protein", 
-        "description": "Packed with protein-rich foods to support muscle growth, energy levels, and overall health. Featuring lean meats like chicken breast, turkey, and beef, as well as eggs, tofu, chickpeas, Greek yogurt, protein bars, and nuts to fuel an active lifestyle.",
-        "img_path": "high protein_pg.jpg"
-    },
-    { 
-        "name" : "Kosher", 
-        "description": "Meals carefully curated to meet kosher dietary requirements, sourced and prepared with the highest standards. Includes kosher-certified meats, dairy, grains, and snacks, such as matzo, challah bread, kosher poultry, smoked fish, and fresh produce.",
-        "img_path": "kosher_pg.jpg"
-    },
-    { 
-        "name" : "Vegetarian", 
-        "description": "A flavorful selection of plant-based meals, featuring fresh vegetables, hearty grains, and protein-rich alternatives. Expect ingredients like lentils, beans, tofu, quinoa, whole grains, cheese, eggs, and an abundance of fruits and veggies for balanced nutrition.",
-        "img_path": "vegetarian_pg.jpg"
-    },
-    { 
-        "name" : "Vegan", 
-        "description": "100% plant-powered meals made with fresh, meat-free ingredients. This plan features tofu, tempeh, chickpeas, lentils, whole grains, nut butters, dairy-free cheeses, fresh fruits, leafy greens, and nutrient-rich veggies for a well-rounded diet.",
-        "img_path": "vegan_pg.jpg"
-    },
-    { 
-        "name" : "Paleo", 
-        "description": "Inspired by the diet of early humans, these meals are free from processed foods, grains, and dairy—offering a clean, natural approach to nutrition. Includes grass-fed meats, wild-caught fish, eggs, nuts, seeds, fresh vegetables, berries, and healthy fats like avocado and coconut oil.",
-        "img_path": ""
-    }
+{ 
+    "options" : [
+        { 
+            "name" : "budget", 
+            "description": "Affordable and nutritious meals designed to maximize savings while providing delicious flavors and wholesome ingredients. Expect staples like rice, pasta, canned beans, seasonal vegetables, eggs, chicken thighs, and budget-friendly proteins to keep costs low while ensuring satisfying meals.",
+            "img_path": "budget_pg.jpg"
+        },
+        { 
+            "name" : "custom", 
+            "description": "A fully personalized grocery plan tailored to your preferences, dietary needs, and favorite flavors. Choose from a variety of proteins, vegetables, grains, and specialty items like seafood, gourmet cheeses, exotic spices, and organic produce to craft a plan that fits your lifestyle.",
+            "img_path": ""
+        },
+        { 
+            "name" : "halal", 
+            "description": "- **Halal**: A selection of meals prepared in accordance with halal dietary laws, ensuring high-quality ingredients and ethical sourcing. Includes halal-certified meats such as chicken, beef, and lamb, along with fresh vegetables, dairy products, grains, and halal snacks for a balanced diet.",
+            "img_path": ""
+        },
+        { 
+            "name" : "high protein", 
+            "description": "Packed with protein-rich foods to support muscle growth, energy levels, and overall health. Featuring lean meats like chicken breast, turkey, and beef, as well as eggs, tofu, chickpeas, Greek yogurt, protein bars, and nuts to fuel an active lifestyle.",
+            "img_path": "high protein_pg.jpg"
+        },
+        { 
+            "name" : "kosher", 
+            "description": "Meals carefully curated to meet kosher dietary requirements, sourced and prepared with the highest standards. Includes kosher-certified meats, dairy, grains, and snacks, such as matzo, challah bread, kosher poultry, smoked fish, and fresh produce.",
+            "img_path": "kosher_pg.jpg"
+        },
+        { 
+            "name" : "vegetarian", 
+            "description": "A flavorful selection of plant-based meals, featuring fresh vegetables, hearty grains, and protein-rich alternatives. Expect ingredients like lentils, beans, tofu, quinoa, whole grains, cheese, eggs, and an abundance of fruits and veggies for balanced nutrition.",
+            "img_path": "vegetarian_pg.jpg"
+        },
+        { 
+            "name" : "vegan", 
+            "description": "100% plant-powered meals made with fresh, meat-free ingredients. This plan features tofu, tempeh, chickpeas, lentils, whole grains, nut butters, dairy-free cheeses, fresh fruits, leafy greens, and nutrient-rich veggies for a well-rounded diet.",
+            "img_path": "vegan_pg.jpg"
+        },
+        { 
+            "name" : "paleo", 
+            "description": "Inspired by the diet of early humans, these meals are free from processed foods, grains, and dairy—offering a clean, natural approach to nutrition. Includes grass-fed meats, wild-caught fish, eggs, nuts, seeds, fresh vegetables, berries, and healthy fats like avocado and coconut oil.",
+            "img_path": ""
+        }
 
-    
-]
+        
+    ]
+}

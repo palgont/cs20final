@@ -16,6 +16,7 @@ MongoClient.connect(URL)
     db = client.db('cookbook');
     usersCollection = db.collection('users');
     recipesCollection = db.collection('recipes');
+    cartCollection = db.collection('user_cart')
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
@@ -30,6 +31,10 @@ app.get('/', (req, res) => {
 app.get('/recipe.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'recipe.html'));
 });
+
+app.get("/order.html", (req, res)=> { 
+  res.sendFile(path.join(__dirname, "order.html"));
+}); 
 
 // route for the form
 app.get('/form.html', (req, res) => {
@@ -90,3 +95,32 @@ app.get('/bookmarks/:userId', async (req, res) => {
   const bookmarks = await recipesCollection.find({ _id: { $in: user.bookmarked_recipes }}).toArray();
   res.json(bookmarks);
 });
+
+app.get('/fill_cart', async(req, res)=> { 
+  // console.log("I'm in")
+  // console.log("Received data", req.query); 
+  try { 
+    await cartCollection.insertOne( {user_id: req.query.user_id, 
+      num_plans: req.query.num_plans,
+     meal_option: req.query.meal_plan});
+  } catch(err) { 
+    console.error("Error inserting into mongo")
+     throw new Error(err);
+  }
+  
+})
+
+app.get('/get_order', async (req, res) => { 
+  try { 
+    const userId = req.query.userId; 
+    const order = await cartCollection.find({_id: userId}); 
+    if (!order) { 
+      return res.status(404).send({error: "Order not found"})
+    }
+    console.log(order)
+    res.send(order)
+  }catch (error) { 
+    console.log(error); 
+    res.status(500).send({error: 'Server error fetching order.'})
+  }
+})

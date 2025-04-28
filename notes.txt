@@ -1,0 +1,6 @@
+Currently I need to make sure that when someone finishes selecting all the 
+options on the buttons, I show them immediately, how many boxes they need to 
+subscribe to receive per month. and then after that, they can go to the cart and 
+purchase. 
+
+Write now you have to move unto the next page but you have to validate the groups and make sure 
