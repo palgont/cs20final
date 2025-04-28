@@ -97,8 +97,8 @@ footer {
     color: white;
     padding: 10px 0px;
     font-family: "Open Sans";
-    position: absolute;
-    bottom: 0;
+    /* position: absolute; */
+    margin-bottom: 0;
     
 }
 footer p a{

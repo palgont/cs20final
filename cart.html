@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NomNomNom</title>
+    <!-- Link to external style sheet -->
+    <link rel="stylesheet" href="styles.css">
+     <!-- Link to external style sheet -->
+     <!-- <link rel="stylesheet" href="order.css"> -->
+    <!-- For Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/nomoriginal.png">
+    <!-- For JQuery usage -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
+    <!--Font Styles-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap,
+    wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
+    rel="stylesheet">
+    <!-- For responsiveness -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="nav.js" defer></script>
+    <script src="cart.js" defer></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <div id="top_bar">
+        <header>
+            <a href="index.html">
+                <div id = "img_container">
+                    <img id="logo" src="./images/nomoriginal.png">
+                </div>
+            </a>
+            <a href="index.html"><span id="title">NomNomNom</span></a>
+        </header>
+      <!-- Navagation Bar -->
+      <div id="nav-placeholder"></div>
+
+      <div id = "below_nav"></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // console.log("Got here")
+            // Get the query parameters from the URL
+            const params = new URLSearchParams(window.location.search);
+            const meal_plan = params.get('meal_plan')
+            const user_id = localStorage.getItem('nom_nom_nom_id');
+            let num_plans;
+            if (params.get('choose_num_plans')) { 
+                num_plans = params.get('choose_num_plans')
+            } else { 
+                num_plans = params.get('num_plans')
+            }
+            // Send this data to the server using AJAX
+            $.ajax({
+                url: '/fill_cart',  // Endpoint on the server
+                type: 'GET',           // Using GET to send the data
+                data: {
+                    meal_plan: meal_plan,
+                    user_id: user_id, 
+                    num_plans: num_plans
+                },
+                success: function(response) {
+                    console.log('Data sent successfully:', response);
+                    // You can render data on the page or handle response here
+                },
+                error: function(err) {
+                    console.error('Error sending data to server:', err);
+                }
+            });
+        });
+    </script>
+    
+    <!-- Footer -->
+    <footer>
+        <p>©PropertyPath &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
+            &nbsp; <a href="mailto:propertypath@gmail.com">
+                propertypath@gmail.com</a></p>
+    </footer>
+</body>
+</html>

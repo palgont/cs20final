@@ -24,6 +24,7 @@
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <!-- Our script to load nav and handle sign-in -->
         <script src="nav.js" defer></script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <style>
 
         </style>
@@ -59,7 +60,16 @@
         </div>
 
         <section id="first_section" >
-           <div id ="land_note" >Please select a NomNomNom subscription category to purchase</div>
+           <div id ="land_note" >Please select a NomNomNom subscription category to purchase</br>
+            On purchase of any of these meal_options, you will get them 
+            delivered to your address every week 
+            at a time chosen by you. 
+            The standard price for each of these options is $50. 
+            A purchase of one set of this plan can feed an adult if they cooked 
+            3 meals a day every day of the week. </br>
+
+            Click on an option to customize your deal!
+            </div>
 
            <form name='get_div_id' action="/options_page.html" method="get" id = "get_div_id">
            <input type= "hidden" name = "selected_img" id = "get_selected_img" value = "">

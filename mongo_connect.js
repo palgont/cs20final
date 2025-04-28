@@ -17,6 +17,5 @@ async function run(){
         process.exit(1); 
     }
 }
-run();
-module.exports = connectDB;
+module.exports = run;
 
