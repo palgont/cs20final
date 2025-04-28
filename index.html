@@ -165,13 +165,13 @@
             }
         }
         @media (max-width: 450px) {
-            /* Full-width single column grid, centered */
             .card-container {
                 display: grid;
                 grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0 1rem;
+                gap: 1rem;        
+                padding: 0 1rem;    
                 margin: 0 auto;
+                max-width: 360px;
             }
 
             .card {
@@ -182,7 +182,6 @@
                 flex-direction: column;
             }
 
-            /* Images scale down to fit */
             .card img,
             .card-image-mid img {
                 width: 100%;
@@ -555,7 +554,7 @@
         </div>
         <!-- Value Cards -->
         <div class="value-cards">
-            <div class="value-card">
+            <div class="value-card tabindex=0">
                 <div class="value-card-inner">
                 <div class="value-card-front">Freshness</div>
                 <div class="value-card-back">We use only the highest-quality,
