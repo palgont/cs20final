@@ -46,7 +46,8 @@
         }
 
         #options_div  img{ 
-            width: 90%; 
+            width: 80%;
+            height: 40vh; 
            border-radius: 10px;
         }
 
@@ -96,6 +97,25 @@
             text-align: center;
             display: inline-block;
         }
+
+        #next { 
+            background-color:  #379537 ;
+            border: none;
+            color: white;
+            width: 100px;
+            height: 40px;
+            padding: 2px;
+            border-radius: 10px;
+            margin: 7px 7px 7px 0px;
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        #nxt_buttons { 
+            display: flex;
+            flex-direction: row;
+
+        }
     </style>
 </head>
 <body>
@@ -116,7 +136,7 @@
                 <a href="index.html">Home </a>
                 <a href="about.html">About </a>
                 <a href="createadish.html">CreateaDish</a>
-                <a href="recipes.html">Recipes</a>
+                <a href="recipe.html">Recipes</a>
                 <a href="order.html">Order</a>
                 <a href="login.html">Login</a>
             </div>
@@ -128,10 +148,11 @@
     <section id="first_section">
         <div id = "sidebar">
             <div id = "options_div">
-                <img src="images/budget_pg.jpg" alt="">
+                <img src="" alt="">
+                <div id = "contents">
+                </div>
             </div>
-            <div id = "contents">t
-            </div>
+           
 
         </div>
         <div id = "cooking_info">
@@ -148,6 +169,12 @@
                 How many people do you cook for per day? 
                 <div id = "num_people" class = "form_buttons">
                 </div>
+            
+              <div id="nxt_buttons">
+               <button id = "next">Add to cart</button>
+               <button id = "next">View Cart</button>
+               <button id = "next"> Add another meal option</button>
+              </div>
              
              
             </form>
@@ -244,12 +271,37 @@
             console.log(groupClass)
             $('.' + groupClass).removeClass('selected');
             $(this).addClass('selected'); 
+            console.log($(this).attr('id'));
             localStorage.setItem('selectedOption_' + groupClass, $(this).text());
 
         })
-        console.log($(freq_info).html())
     </script>
 
+    <script>
+        $(document).ready(function(){ 
+            fetch('./options.json')
+            .then (response => response.json())
+            .then (data => {
+                display_options(data.options);
+            })
+            .catch (error => console.log(error))
+        })
+
+        function display_options(options) { 
+            contents = $('#contents'); 
+            content_info = $('<p></p>')
+         
+            Object.keys(options).forEach(key => {
+                if (options[key].name == selectedImg) { 
+                    content_info.append(options[key].description); 
+                    contents.append(content_info);
+                    return;
+                }
+            }); 
+          
+            
+        }
+    </script>
 
    
     <!-- Footer -->
