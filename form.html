@@ -49,6 +49,22 @@
                 margin: 5px;
             }
 
+            .spacing{
+                padding: 5px 15px 5px 10px;
+                width: 20px;
+                background-color: white;
+                color: white;
+                display: hidden;
+                border: none;
+                border-radius: 5px;
+                font-size: 14px;
+                margin: 5px;
+            }
+
+            .spacing:hover {
+                background-color: white;
+            }
+
             button:hover {
                 background-color: #2781d0;
             }
@@ -60,13 +76,19 @@
                 margin-right: auto;
                 padding: 20px;
                 border-radius: 20px;
-                border: solid #50affd 5px;
+                border: solid #379537 5px;
             }
 
             section img { 
                 width: 100%;
                 object-fit: cover;
                 padding: 80px;
+            }
+
+            @media (max-width: 950px) {
+                form {
+                    width: 50%;
+                }
             }
         </style>
         
@@ -101,12 +123,14 @@
             <label>Ingredients:</label><br>
             <div id="ingredients-list">
                 <input type="text" name="ingredients[]" placeholder="Ingredient" required>
+                <button type="button" class="spacing"> </button>
             </div>
             <button type="button" onclick="addIngredient()">+ Add Ingredient</button><br><br>
 
             <label>Procedure:</label><br>
             <div id="steps-list">
                 <input type="text" name="steps[]" placeholder="Step" required>
+                <button type="button" class="spacing"> </button>
             </div>
             <button type="button" onclick="addStep()">+ Add Step</button><br><br>
 
