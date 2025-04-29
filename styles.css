@@ -153,6 +153,7 @@ footer p a:hover{
     nav {
         flex-direction: column;
         align-items: center;
+        padding: 10px;
     }
 
     .hamburger {
