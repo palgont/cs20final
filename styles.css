@@ -41,25 +41,26 @@ h1 {
     margin-left:15px;
 }
 nav {
-        font-size: 20px;
-        font-family: "Open Sans";
-        display:flex;
-        justify-content: center;
-        background-color: #379537;
-        overflow: hidden;
-        /* padding:10px; */
-}
-nav a{
-        text-decoration: none;
-        color:#fff;
-        padding: 10px 20px;
-        font-weight: 400;
-}
-nav a:hover{
-        background-color:  #fff;
-        color:#379537;
-}
-
+    font-size: 20px;
+    font-family: "Open Sans";
+    display: flex;
+    justify-content: center;
+    background-color: #379537;
+    overflow: hidden;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: 400;
+  }
+  
+  /* apply hover to every link except the one with class="cart" */
+  nav a:not(.cart):hover {
+    background-color: #fff;
+    color: #379537;
+  }  
 
 
 .nav-links {
