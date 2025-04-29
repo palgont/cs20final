@@ -22,8 +22,47 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="nav.js" defer></script>
-    <script src="cart.js" defer></script>
+    
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <style>
+        section { 
+            width: 80%; 
+            padding: 200px 0px 0px 0px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: DM Serif Text;
+            font-size: 20px;  
+
+        }
+        .cart_img { 
+            width: 90px;
+            height: 70px;
+        }
+        /* .order_div { 
+            display: flex;
+        } */
+        .order_name{ 
+            margin-left: 100px; 
+        }
+        .order_price { 
+            margin-left: 100px; 
+        }
+
+        @media (max-width:650px) {
+            section { 
+                width: 70%; 
+                padding: 200px 0px 0px 0px;
+                font-size: 16px;  
+            }
+            .order_name{ 
+                margin-left: 60px; 
+            }
+            .order_price { 
+                margin-left: 60px; 
+            }
+
+        }
+    </style>
 
 </head>
 <body>
@@ -42,6 +81,10 @@
 
       <div id = "below_nav"></div>
     </div>
+
+    <section id = "display_order"> 
+        Please view your order below:  </br></br></br>
+    </section>
     <script>
         $(document).ready(function() {
             // console.log("Got here")
@@ -55,15 +98,18 @@
             } else { 
                 num_plans = params.get('num_plans')
             }
+            // console.log(user_id, num_plans, meal_plan)
             // Send this data to the server using AJAX
             $.ajax({
                 url: '/fill_cart',  // Endpoint on the server
-                type: 'GET',           // Using GET to send the data
-                data: {
+                contentType: 'application/json',
+                type: 'POST',           // Using POST to send data
+                data: JSON.stringify({
                     meal_plan: meal_plan,
                     user_id: user_id, 
                     num_plans: num_plans
-                },
+                   
+                }),
                 success: function(response) {
                     console.log('Data sent successfully:', response);
                     // You can render data on the page or handle response here
@@ -73,6 +119,66 @@
                 }
             });
         });
+    </script>
+
+   
+    <script>
+      async function loadOrder() { 
+        const user_id = localStorage.getItem('nom_nom_nom_id'); 
+        const response = await fetch(`http://localhost:3000/get_order?userId=${user_id}`);
+        const order = await response.json(); 
+        console.log('got here to cart.js');
+        console.log("order length", order.length);
+        console.log("Order", order[0].user_id, order[0].num_plans, order[0].meal_option); 
+        return order
+    }
+
+    //Load order page 
+
+    (async () => {
+        const order = await loadOrder(); 
+        if (!order || !Array.isArray(order)) {
+            console.log("No valid order returned.");
+            return;
+        }
+        console.log("got here in load order");
+        orders =  $("<div>", { 
+                id: "orders"
+            })
+        let total_price = 0; 
+        for (let i = 0; i < order.length; i++) { 
+
+            console.log(order[i].user_id, order[i].num_plans, order[i].meal_option);
+            let plan_name = `${order[i].meal_option}`
+            order_div =  $("<div>", { 
+                class: "order_div"
+            })
+            let plan_price = 50 * parseInt(order[i].num_plans)
+            total_price += plan_price
+            let name =  $(`<span class = 'order_name'> plan: ${order[i].meal_option}</span>`)
+            let price = $(`<span class = 'order_price'> price: $ ${plan_price}</span>`)
+        
+            let img = $("<img>", { 
+                src :`images/${order[i].meal_option}_op.jpg`,
+                class: 'cart_img'
+            })
+            order_div.append(img);
+            order_div.append(price);
+            order_div.append(name); 
+            order_div.append('<hr>')
+           
+
+            orders.append(order_div);
+            console.log(orders);
+        }
+        $('#display_order').append(orders);
+        let tots_div =  $("<div>", { 
+                class: "order_div"
+            })
+        let tots = $(`<span class = 'order_price'> Total price: $ ${total_price}</span>`)
+        tots_div.append(tots)
+        $('#display_order').append(tots_div);
+        })();
     </script>
     
     <!-- Footer -->

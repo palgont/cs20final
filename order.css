@@ -65,10 +65,20 @@
 
 #land_note{ 
     padding: 170px 65px 0px 0px;
-
+    width : 60%;
     font-size: 30px;
     font-family: DM Serif Text;
     text-align: center;
+    margin: 0 auto;
+
+}
+
+@media (max-width:900px) {
+    #land_note { 
+        width: 550px;
+        font-size: 20px;
+
+    }
 }
 
 
