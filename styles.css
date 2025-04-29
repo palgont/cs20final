@@ -47,7 +47,7 @@ nav {
         justify-content: center;
         background-color: #379537;
         overflow: hidden;
-        padding:10px;
+        /* padding:10px; */
 }
 nav a{
         text-decoration: none;
@@ -59,6 +59,8 @@ nav a:hover{
         background-color:  #fff;
         color:#379537;
 }
+
+
 
 .nav-links {
     display: flex;
