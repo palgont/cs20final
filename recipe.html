@@ -60,10 +60,6 @@
                 width: 80%;
             }
 
-            .author {
-                font-size: 10px;
-            }
-
             .contents {
                 display: flex;
                 justify-content: flex-start;
@@ -172,7 +168,7 @@
                     div.innerHTML = `
                     <div class="recipe-title">${recipe.title}</div>
                     <div class="description">
-                        <p class="author">Posted by: ${recipe.author_id}</p>
+                        <p style="font-size: 10px;">Posted by: ${recipe.author_id}</p>
                         <p>Ingredients:</p>
                         <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
                         <p>Procedure:</p>
