@@ -191,16 +191,24 @@
                         return;
                     }
 
+                    const isBookmarked = e.target.classList.contains('bookmarked');
+                    const endpoint = isBookmarked ? '/unbookmark' : '/bookmark';
+
                     try {
-                        const res = await fetch('/bookmark', {
+                        const res = await fetch(endpoint, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ userId, recipeId })
                         });
-                        if (res.ok) {
-                        alert('Recipe bookmarked successfully!');
+
+                        if (isBookmarked) {
+                            e.target.textContent = 'Bookmark';
+                            e.target.classList.remove('bookmarked');
+                            alert('Recipe unbookmarked!');
                         } else {
-                        alert('Failed to bookmark recipe.');
+                            e.target.textContent = 'Unbookmark';
+                            e.target.classList.add('bookmarked');
+                            alert('Recipe bookmarked!');
                         }
                     } catch (error) {
                         console.error('Error bookmarking recipe:', error);

@@ -89,6 +89,19 @@ app.post('/bookmark', async (req, res) => {
   res.sendStatus(200);
 });
 
+// Unbookmark recipe
+app.post('/unbookmark', async (req, res) => {
+  const { userId, recipeId } = req.body;
+  if (!userId || !recipeId) {
+    return res.status(400).send('Missing parameters');
+  }
+  await usersCollection.updateOne(
+    { _id: userId },
+    { $pull: { bookmarked_recipes: new ObjectId(recipeId) } }
+  );
+  res.sendStatus(200);
+});
+
 // Get bookmarks
 app.get('/bookmarks/:userId', async (req, res) => {
   const userId = req.params.userId;
