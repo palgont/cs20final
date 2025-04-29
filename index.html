@@ -21,6 +21,7 @@
         rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
         rel="stylesheet">
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -107,7 +108,7 @@
             height: 45px;
             margin: 10px auto 0;
             border: none;
-            background-color: #007BFF;
+            background-color: green;
             color: white;
             cursor: pointer;
             border-radius: 4px;
@@ -152,10 +153,10 @@
         /* Call to Action Cards Responsiveness */
         @media (max-width:1100px) {
             .card {
-                width:90%;
+                width:70%;
                 flex-direction:row;
                 margin:10px;
-                padding-right:70px;
+                padding-right:80px;
                 
             }
             .card-container{
@@ -163,23 +164,44 @@
                 justify-content: center;
             }
         }
-        @media (max-width:450px) {
+        @media (max-width: 450px) {
+            .card-container {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;    
+                margin: 0 auto;
+                max-width: 360px;
+            }
+
             .card {
-                width: 72%;
-                flex-direction:row;
-                margin:10px;
-                
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
+                padding: 12px;
+                flex-direction: column;
             }
-            .card-container{
-                grid-template-columns: 530px;
-                justify-content: center;
+
+            .card img{
+                width: 85%;
+                height: auto;
+                max-height: 180px;
             }
-            li {
-                margin-right:0px;
-                padding-right:8px;
-                font-size:12px;
+
+            .card-image-mid img{
+                width: 90%;
+                margin-top: 60px;
+            }
+
+            .card-description h4 {
+                font-size: 1.2rem;  
+            }
+            .card-description p {
+                font-size: 0.9rem;  
+                margin: 0.5rem 0;
             }
         }
+
         @media (max-width:1200px) {
             .day_container p {
                 top:60%;
@@ -217,7 +239,7 @@
             margin-top: 10px;
             padding: 8px 16px;
             border: none;
-            background-color: #007BFF;
+            background-color: green;
             color: white;
             cursor: pointer;
             border-radius: 4px;
@@ -347,9 +369,12 @@
             transition: transform 0.8s;
             transform-style:preserve-3d;
         }
-        .value-card:hover .value-card-inner {
-            transform: rotateY(180deg);
+        .value-card:hover .value-card-inner,
+        .value-card:focus .value-card-inner,
+        .value-card:active .value-card-inner {
+        transform: rotateY(180deg);
         }
+
         .value-card-front, .value-card-back {
             position:absolute;
             width: 100%;
@@ -405,7 +430,15 @@
             <div id="nav-placeholder"></div>
 
             <div id = "below_nav"></div>
+
+        <!-- SCROLLING PROGESS FEATURE -->
+        <div id="scroll-progress">
+            <div id="scroll-progress-bar"></div>
         </div>
+
+        </div>
+
+
         <section>
             <img src="./images/banner.jpg" alt="">
         </section>
@@ -473,7 +506,7 @@
                 Thanks to our nationwide shipping network, you’ll receive perfectly
                 portioned ingredients straight to your door—fresh, fast, and ready
                 whenever you are.
-            </p>.
+            </p>
             </p>
             <br>
             <div class="local-button-container">
@@ -530,7 +563,7 @@
         </div>
         <!-- Value Cards -->
         <div class="value-cards">
-            <div class="value-card">
+            <div class="value-card tabindex=0">
                 <div class="value-card-inner">
                 <div class="value-card-front">Freshness</div>
                 <div class="value-card-back">We use only the highest-quality,
@@ -563,6 +596,15 @@
             <p>©NomNomNom &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
                 &nbsp; <a href="mailto:nomnomnom@gmail.com">nomnomnom@gmail.com</a></p>
         </footer>
+
+        <!-- reveal footer feature(hidden until scroll) -->
+        <section class="footer-reveal">
+            <div class="footer-reveal__content">
+            <!-- you can either use an <img> or giant text here -->
+            <h1>NomNomNom</h1>
+            </div>
+        </section>
+
         <script>
             $(document).ready(function () {
               let currentIndex = 0;
@@ -616,6 +658,18 @@
               updateSlider();
               let slideInterval = setInterval(() => $('.next').click(), 4000);
             });
-            </script>            
+            </script>     
+            
+            <!-- scrolling bar feature below nav -->
+            <script>
+                const progressBar = document.getElementById('scroll-progress-bar');
+                window.addEventListener('scroll', () => {
+                    const doc = document.documentElement;
+                    const scrollTop = doc.scrollTop;
+                    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+                    const pct = (scrollTop / scrollHeight) * 100;
+                    progressBar.style.width = pct + '%';
+                });
+            </script>       
     </body>
 </html>

@@ -24,6 +24,7 @@
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <!-- Our script to load nav and handle sign-in -->
         <script src="nav.js" defer></script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <style>
 
         </style>
@@ -59,7 +60,16 @@
         </div>
 
         <section id="first_section" >
-           <div id ="land_note" >Please select a NomNomNom subscription category to purchase</div>
+           <div id ="land_note" >Please select a NomNomNom subscription category to purchase</br>
+            On purchase of any of these meal_options, you will get them 
+            delivered to your address every week 
+            at a time chosen by you. 
+            The standard price for each of these options is $50. 
+            A purchase of one set of this plan can feed an adult if they cooked 
+            3 meals a day every day of the week. </br>
+
+            Click on an option to customize your deal!
+            </div>
 
            <form name='get_div_id' action="/options_page.html" method="get" id = "get_div_id">
            <input type= "hidden" name = "selected_img" id = "get_selected_img" value = "">
@@ -69,7 +79,7 @@
         <script> 
             var options_div = $("<div id = 'food_options'></div>")
             
-            var options_array = ["budget", "custom", "halal", "high protein", "kosher", "paleo", "vegan", "vegetarian"]
+            var options_array = ["budget", "halal", "high protein", "kosher", "paleo", "vegan", "vegetarian"]
             options_array.forEach((option)=> { 
                 //Note that anchor tag overides form processing
                 // var div_link = $("<a href= 'options_page.html' class = 'div_link'></a>")
@@ -100,10 +110,10 @@
             })
             $('#first_section').append(options_div)
 
-            var progress_bar = $("<div id = 'progress_bar'></div>")
-            $('#first_section').append(progress_bar)
-            var progress_bar_inner = $("<div id ='progress_bar_in'></div>")
-            $('#progress_bar').append(progress_bar_inner)
+            // var progress_bar = $("<div id = 'progress_bar'></div>")
+            // $('#first_section').append(progress_bar)
+            // var progress_bar_inner = $("<div id ='progress_bar_in'></div>")
+            // $('#progress_bar').append(progress_bar_inner)
 
             // function getImg ( option){
             //     console.log("In option function")

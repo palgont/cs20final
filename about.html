@@ -25,7 +25,6 @@
         <style>
             .nutrition {
                 background: #379537;
-                height: 500px;
                 font-family: "DM Serif Text";
                 display: flex;
                 flex-direction: column;
@@ -78,6 +77,49 @@
                 display: block;
             }
 
+            .waste {
+                height:auto;
+                font-family: "DM Serif Text";
+                font-size: 24px;
+                
+            }
+            .waste h2 {
+                padding-left:55vw;
+                font-size: 3rem;
+                margin-top: 3.5rem;
+            }
+            .waste p {
+                font-family: "DM Serif Text";
+                padding-left: 20vw;
+                padding-right:15vw;
+                font-size: 1.25rem;
+                color: #000;
+            }
+            .waste strong{
+                font-weight:25px;
+            }
+            .waste-img-container {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin:auto;
+            }
+            .waste img {
+                border: solid 2px #1b1b1bc7;
+                border-radius: 6px;
+                max-height:800px;
+                max-width: 650px;
+            }
+
+            @media(max-width: 800px) {
+                .waste h2 {
+                    padding-left: 25vw;
+                }
+                .waste img{
+                    height: 300px;
+                    width: 450px;
+                }
+            }
             .qanda-container {
                 max-width: 800px;
                 margin: 40px auto;
@@ -135,6 +177,11 @@
             <div id="nav-placeholder"></div>
 
             <div id = "below_nav"></div>
+
+            <!-- SCROLLING PROGESS FEATURE -->
+            <div id="scroll-progress">
+                <div id="scroll-progress-bar"></div>
+            </div>
         </div>
         <section>
              <img src="./images/about_banner.jpg" alt="">
@@ -177,6 +224,17 @@
             </div>
         </div>
 
+
+        <!-- Food Waste Facts -->
+        <div class="waste">
+            <h2>Food Waste</h2>
+            <p>Americans discard more food than any other country, nearly <strong>40
+                million</strong> tons — or 30-40 percent of the entire US food supply.</p>
+                <div class="waste-img-container">
+                    <img src="./images/waste.jpg" alt="waste-image">
+                </div>
+        </div>
+
         <!-- Q&A Section -->
         <section class="qanda-container">
                 <h2>Frequently Asked Questions</h2>
@@ -215,6 +273,17 @@
                 });
             });
         </script>
-        
+
+        <!-- scrolling bar feature below nav -->
+        <script>
+            const progressBar = document.getElementById('scroll-progress-bar');
+            window.addEventListener('scroll', () => {
+                const doc = document.documentElement;
+                const scrollTop = doc.scrollTop;
+                const scrollHeight = doc.scrollHeight - doc.clientHeight;
+                const pct = (scrollTop / scrollHeight) * 100;
+                progressBar.style.width = pct + '%';
+            });
+        </script>   
     </body>
 </html>

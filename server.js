@@ -16,6 +16,7 @@ MongoClient.connect(URL)
     db = client.db('cookbook');
     usersCollection = db.collection('users');
     recipesCollection = db.collection('recipes');
+    cartCollection = db.collection('user_cart')
     app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
@@ -31,9 +32,17 @@ app.get('/recipe.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'recipe.html'));
 });
 
+app.get("/order.html", (req, res)=> { 
+  res.sendFile(path.join(__dirname, "order.html"));
+}); 
+
 // route for the form
 app.get('/form.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'form.html'));
+});
+
+app.get('/cart.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cart.html'));
 });
 
 // fetch recipes
@@ -90,3 +99,40 @@ app.get('/bookmarks/:userId', async (req, res) => {
   const bookmarks = await recipesCollection.find({ _id: { $in: user.bookmarked_recipes }}).toArray();
   res.json(bookmarks);
 });
+
+app.post('/fill_cart', async(req, res)=> { 
+  const {user_id, num_plans, meal_plan} = req.body;
+  console.log(req.body)
+  console.log("Received data", user_id, num_plans, meal_plan); 
+  try { 
+    await cartCollection.insertOne( {user_id: req.body.user_id, 
+     num_plans: req.body.num_plans,
+     meal_option: req.body.meal_plan});
+     res.json({message:"Cart filled successfully!"})
+  } catch(err) { 
+    console.error("Error inserting into mongo:", err);
+    res.status(500).json({ error: "Error inserting into database" }); 
+  }
+  
+})
+
+app.get('/get_order', async (req, res) => { 
+  console.log('got here in get order')
+  try { 
+    const userId = req.query.userId; 
+    console.log("in try")
+    console.log(userId);
+    const order = await cartCollection.find({user_id: userId}).toArray(); 
+    console.log(order[0].user_id)
+    if (!order.length) { 
+      return res.status(404).send({error: "Order not found"})
+    }
+    console.log("fetched")
+
+    console.log("user_id", order[0].user_id)
+    res.send(order)
+  }catch (error) { 
+    console.log(error); 
+    res.status(500).send({error: 'Server error fetching order.'})
+  }
+})

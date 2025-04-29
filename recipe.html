@@ -19,6 +19,7 @@
         <!-- Google Sign-In client library -->
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <!-- Our script to load nav and handle sign-in -->
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <script src="nav.js" defer></script>
         <!-- For responsiveness -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,6 +132,10 @@
             <div id="nav-placeholder"></div>
 
             <div id = "below_nav"></div>
+            <!-- SCROLLING PROGESS FEATURE -->
+            <div id="scroll-progress">
+                <div id="scroll-progress-bar"></div>
+            </div>
         </div>
         <section>
              <img src="./images/bg2.jpg" alt="">
@@ -261,5 +266,48 @@
             }
 
         </script>
+
+        <!-- scrolling bar feature below nav -->
+        <script>
+            const progressBar = document.getElementById('scroll-progress-bar');
+            window.addEventListener('scroll', () => {
+                const doc = document.documentElement;
+                const scrollTop = doc.scrollTop;
+                const scrollHeight = doc.scrollHeight - doc.clientHeight;
+                const pct = (scrollTop / scrollHeight) * 100;
+                progressBar.style.width = pct + '%';
+            });
+        </script>   
+
+        <!-- Javascript to not allow those to post recipe when they are not logged in -->
+        <script>
+            function updatePostRecipeButton() {
+                const userId = localStorage.getItem('nom_nom_nom_id');
+                const postRecipeLink = document.querySelector('.buttons a[href="form.html"]');
+            
+                if (!postRecipeLink) return;
+            
+                if (userId) {
+                    // If logged in, allow normal navigation
+                    postRecipeLink.onclick = null;
+                    postRecipeLink.style.pointerEvents = 'auto';
+                    postRecipeLink.style.opacity = '1';
+                } else {
+                    // If not logged in, prevent navigation
+                    postRecipeLink.onclick = function(event) {
+                        event.preventDefault();
+                        alert('Please login to post a recipe.');
+                    };
+                    postRecipeLink.style.pointerEvents = 'auto'; // We allow clicking so we can intercept and show alert
+                    postRecipeLink.style.opacity = '1'; // Normal look
+                }
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                updatePostRecipeButton();
+            });
+        </script>
+    
+
     </body>
 </html>

@@ -18,16 +18,18 @@
     rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap"
     rel="stylesheet">
+    <script src="nav.js" defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- For responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     <style>
         section { 
             display: flex;
             flex-direction: row;
-         
             height: 500px;
-            padding: 100px;
+            padding: 150px;
             font-family: DM Serif Text;
             
         }
@@ -46,18 +48,17 @@
         }
 
         #options_div  img{ 
-            width: 90%; 
+            width: 30vw;
+            height: 40vh; 
            border-radius: 10px;
-        }
 
-        #cooking_info { 
-            
         }
 
         .form_buttons { 
             display: flex;
             flex-direction: row;
             margin: 5px 0px;
+            width: 300px;
         }
 
 
@@ -96,6 +97,89 @@
             text-align: center;
             display: inline-block;
         }
+
+        .next { 
+            background-color:  #379537 ;
+            border: none;
+            color: white;
+            width: 100px;
+            height: 40px;
+            padding: 2px;
+            border-radius: 10px;
+            margin: 7px 7px 7px 0px;
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        #nxt_buttons { 
+            display: flex;
+            flex-direction: row;
+            width : 100px;
+        }
+        #after_q { 
+            display:none ;
+        }
+
+        @media (max-width:1200px) {
+            #options_div  img{ 
+                width: 30vw;
+                height: 30vh; 
+
+            }
+        }
+
+        @media (max-width:1000px) {
+            section { 
+                flex-direction: column;
+                margin: 0 auto;
+                border: 2px solid black;
+                height: 1200px;
+            }
+
+            #sidebar { 
+                /* background-color: aquamarine; */
+                width : 100%;
+                height: 500px;
+                margin: 120 auto;
+                padding: 0px;
+                padding-top: 50px;
+            
+
+            }
+            #cooking_info{ 
+              
+                padding: 0px;
+                padding-top: 50px;
+                margin-top: 200px;
+                text-align: center;
+                width: 100%;
+                height: 500px;
+                margin: 0 auto;
+            
+            }
+            .form_buttons{ 
+                margin: 0 auto;
+            }
+
+            #nxt_buttons { 
+              margin: 0 auto;
+            }
+
+            #options_div { 
+                width: 30vw;
+                height: 30vh; 
+                margin: 0 auto;
+                
+            }
+        
+        }
+
+        @media (max-width:800px) {
+
+
+        } 
+
+
     </style>
 </head>
 <body>
@@ -109,48 +193,64 @@
             </a>
             <a href="index.html"><span id="title">NomNomNom</span></a>
         </header>
-        <!-- Navagation Bar -->
-        <nav>
-            <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
-            <div class="nav-links">
-                <a href="index.html">Home </a>
-                <a href="about.html">About </a>
-                <a href="createadish.html">CreateaDish</a>
-                <a href="recipes.html">Recipes</a>
-                <a href="order.html">Order</a>
-                <a href="login.html">Login</a>
-            </div>
-        </nav>
-        <div id = "below_nav"></div>
+      <!-- Navagation Bar -->
+      <div id="nav-placeholder"></div>
+
+      <div id = "below_nav"></div>
     </div>
     
 
     <section id="first_section">
         <div id = "sidebar">
             <div id = "options_div">
-                <img src="images/budget_pg.jpg" alt="">
+                <img src="" alt="">
+                <div id = "contents">
+                </div>
             </div>
-            <div id = "contents">t
-            </div>
+           
 
         </div>
         <div id = "cooking_info">
-            <form action="" id = "freq_info">
+            <form action="/cart.html" id = "freq_info" method="get"  onsubmit = "return validate_form()">
+                Please answer the following questions to customize your plan.</br></br>
                 
                 How many days a week do you cook? </br>
                 <div id="times_per_wk" class = "form_buttons"> 
+                    <input type="hidden" id="times"  name="choose_times">
                 </div>
 
-                How many meals do you cook per day? 
+                How many times do you cook per day? 
                 <div id = "meals_per_day" class = "form_buttons">
+                    <input type="hidden" id="meals"  name="choose_meals">
                 </div>
 
                 How many people do you cook for per day? 
                 <div id = "num_people" class = "form_buttons">
+                    <input type="hidden" id="people" name="choose_people">
+                </div>
+
+                <input type="hidden" id="option" name="meal_plan"  >
+
+                <div id="after_q">
+                    Each plan is meant to serve one adult, 3 meals a day ,
+                    7 days a week. It is the minimum plan and it costs 
+                    $50. However, based on your answers to our questions, we 
+                    recommend you purchase 
+                    <span id = "num_plans" name = our_num_plans></span>. 
+                    <input type="hidden" id="plan" name="num_plans" value = "" >
+                    However, if you think you would need more, please select 
+                    your number of plans here: 
+                    <select name="choose_num_plans" id="choose_num_plans">
+                        <option value="" disabled selected hidden> number of plans</option>
+                    </select>
                 </div>
              
-             
             </form>
+            <div id="nxt_buttons">
+                <button  class = "next" id = "add">Add to cart</button>
+                <!-- <a href="cart.html"><button class = "next" id = "view">View Cart</button></a> -->
+            </div>
+              
             
         </div>
     </section>
@@ -166,6 +266,7 @@
 
             // Update the image dynamically
             $("#options_div img").attr("src", `images/${selectedImg}_op.jpg`);
+            $("#option").val(selectedImg);
             
         } else {
             console.log("No selected_img query parameter found.");
@@ -175,23 +276,25 @@
 
 
     <script> 
+
         //   <!-- How many days a week do you cook?  -->
         var times_per_wk = $("#times_per_wk")
-        for(i= 0; i < 5; i+=2){ 
+        let times_options = [ "1-3", "3-5", "5-7"]
+        for(i= 0; i < 3; i+=1){ 
             var times_outer = $("<div class= 'times_outer'  ></div>")
             
             times_per_wk.append(times_outer)
-            var input = $("<input>", { 
+            var box = $("<input>", { 
                 type: 'button',
                 class: 'box times',
                 id: 'time_option' + i,
                 name: "choose_time",
             }); 
-            times_outer.append(input)
+            times_outer.append(box)
             if(i == 4) { 
                 times_outer.append("</br><span>All week </span>")
             } else { 
-                times_outer.append("</br><span>" + (i+1) + "-" + (i + 3) + "</span>")
+                times_outer.append("</br><span>" +  times_options[i]  + "</span>")
             }
         }
 
@@ -204,13 +307,13 @@
             var times_outer = $("<div class= 'times_outer' ></div>")
             
             times_per_wk.append(times_outer)
-            var input = $("<input>", { 
+            var box = $("<input>", { 
                 type: 'button',
                 class: 'box meals',
                 id: 'meal_option' + i,
-                name: "choose_meal",
-            }); ; 
-            times_outer.append(input)
+                name: "choose_meals"
+            }); 
+            times_outer.append(box)
             if (i == 1) { 
                 times_outer.append("</br><span>once </span>")
             } else { 
@@ -222,18 +325,31 @@
         //How many people do you cook for? 
 
         var times_per_wk = $("#num_people")
-        for(i= 0; i < 5; i+=2){ 
+        let people_options = [ "1-3", "3-5", "5-7"]
+        for(i= 0; i < 3; i+=1){ 
             var times_outer = $("<div class= 'times_outer' ></div>")
-            
             times_per_wk.append(times_outer)
-            var input = $("<input>", { 
+            var box = $("<input>", { 
                 type: 'button',
                 class: 'box people',
                 id: 'pep_option' + i,
-                name: "choose_people",
+                
             }); 
-            times_outer.append(input)
-            times_outer.append("</br><span>" + (i+1) + "-" + (i + 3) + " </span>")
+            times_outer.append(box)
+            times_outer.append("</br><span>" + people_options[i] + " </span>")
+        }
+
+        //Set up select options 
+        var select_plan = $('#choose_num_plans'); 
+        for (i = 1; i <= 7 ; i++) { 
+            var option = $('<option>', { 
+                id: i + 'plan' , 
+                class : 'option',
+                text: i, 
+                value: i
+            })
+
+            select_plan.append(option);
         }
         
         //Note stop setting onclick dynamically instead it will not run properly. 
@@ -244,12 +360,87 @@
             console.log(groupClass)
             $('.' + groupClass).removeClass('selected');
             $(this).addClass('selected'); 
+            $('#' + groupClass).val($(this).attr('id'));
+            // console.log("Logging this class", $('#' + groupClass).val());
             localStorage.setItem('selectedOption_' + groupClass, $(this).text());
 
+            if ($('#meals').val() && $('#people').val() && $('#times').val()) { 
+                let options = [2, 4, 7];
+              
+
+                times_op_index = ($('#times').val()).length - 1; 
+                pep_op_index = ($('#people').val()).length - 1;
+                meal_op_index = ($('#meals').val()).length - 1;
+              
+
+                times_op = options[parseInt( $('#times').val() [times_op_index] )]; 
+                pep_op = options[parseInt( $('#people').val() [pep_op_index])]; 
+                meal_op = parseInt( $('#meals').val()[meal_op_index] ); 
+
+                console.log("Options answers:", times_op, pep_op,meal_op )
+                var num_plans = Math.round(1 * pep_op * (meal_op/3) * (times_op/7))
+                if (num_plans < 1) { 
+                    num_plans = 1;
+                }
+                console.log(num_plans)
+                if (num_plans == 1) { 
+                    $('#num_plans').html(num_plans + " plan");
+                } else { 
+                    $('#num_plans').html(num_plans + " plans");
+                }
+                $('#plan').val(num_plans)
+                $('#after_q').css('display', 'block');
+
+            }
         })
-        console.log($(freq_info).html())
+
+        
+        /***********************************Lower button actions***************/
+
+        $(document).on('click', '#add', function () { 
+            $('#freq_info').submit();
+        })
+
+         /********************************Form Validation***********************/
+        function validate_form() { 
+            if (!$('#meals').val() || !$('#people').val() ||!$('#times').val()  ) { 
+                alert("Please ensure that you answered all questions before " + 
+                    "trying to add the item to your cart"
+                )
+                return  false;
+            }
+            return true;
+        }
+
+
+
     </script>
 
+    <script>
+        $(document).ready(function(){ 
+            fetch('./options.json')
+            .then (response => response.json())
+            .then (data => {
+                display_options(data.options);
+            })
+            .catch (error => console.log(error))
+        })
+
+        function display_options(options) { 
+            contents = $('#contents'); 
+            content_info = $('<p></p>')
+         
+            Object.keys(options).forEach(key => {
+                if (options[key].name == selectedImg) { 
+                    content_info.append(options[key].description); 
+                    contents.append(content_info);
+                    return;
+                }
+            }); 
+          
+            
+        }
+    </script>
 
    
     <!-- Footer -->

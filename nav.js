@@ -13,6 +13,8 @@ console.log("User ID:", payload.sub);
 
 // Save the user ID in localStorage with custom key
 localStorage.setItem('nom_nom_nom_id', payload.sub);  // <<< customized
+if (typeof updateSendButton === 'function') updateSendButton();
+if (typeof updatePostRecipeButton === 'function') updatePostRecipeButton();
 
 // Update UI: hide the sign-in button, show the sign-out button
 const signInBtn = document.getElementById('gSignInBtn');
@@ -23,7 +25,7 @@ if (signInBtn && signOutBtn) {
 }
 
 // NEW: Update the Order Button after login
-const orderButton = document.getElementById('orderButton');
+const orderButton = document.getElementById('add');
 if (orderButton) {
   orderButton.textContent = 'Order';
   orderButton.disabled = false;
@@ -54,7 +56,7 @@ fetch('nav.html')
   .then(() => {
     const signOutBtn = document.getElementById('signoutBtn');
     const signInBtnContainer = document.getElementById('gSignInBtn');
-    const orderButton = document.getElementById('orderButton'); 
+    const orderButton = document.getElementById('add'); 
     
     google.accounts.id.initialize({
       client_id: "1034974765274-vikmqleh69u79ht830g74tou5qjejker.apps.googleusercontent.com",
@@ -83,9 +85,9 @@ fetch('nav.html')
 
       // If user is NOT signed in, disable order button
       if (orderButton) {
-        orderButton.textContent = 'Please log in';
+        orderButton.textContent = 'Please log in to order';
         orderButton.disabled = true;
-        orderButton.style.backgroundColor = 'grey';
+        orderButton.style.backgroundColor = 'green';
       }
     }
     
@@ -100,11 +102,11 @@ fetch('nav.html')
         }
 
         // When user signs out, immediately update button
-        const orderButton = document.getElementById('orderButton');
+        const orderButton = document.getElementById('add');
         if (orderButton) {
-          orderButton.textContent = 'Please log in';
+          orderButton.textContent = 'Log in order';
           orderButton.disabled = true;
-          orderButton.style.backgroundColor = 'grey';
+          orderButton.style.backgroundColor = 'green';
         }
         window.location.href = 'index.html'; 
       });

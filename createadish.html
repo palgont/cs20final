@@ -18,6 +18,7 @@
        rel="stylesheet">
        <!-- For responsiveness -->
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 
        <!-- Google Sign-In client library -->
@@ -183,8 +184,12 @@
            </header>
            <div id="nav-placeholder"></div>
            <div id="below_nav"></div>
-       </div>
 
+           <!-- SCROLLING PROGESS FEATURE -->
+          <div id="scroll-progress">
+            <div id="scroll-progress-bar"></div>
+          </div>
+       </div>
 
        <section>
            <img src="./images/chopping_board.jpg" alt="banner image">
@@ -194,7 +199,7 @@
        <div class="top-description">
            <h1>CreateaDish</h1>
            <p>Chat with <strong>Nomly</strong> to create a meal tailored to your ingredients and your preferences.</p>
-           <p id="token-message">*Login and start chatting with Nomly — 5 free tokens every day!</p>
+           <p id="token-message">Start chatting with Nomly!</p>
        </div>
 
 
@@ -406,6 +411,46 @@
            });
          })();
        </script>
+
+       <!-- scrolling bar feature below nav -->
+       <script>
+        const progressBar = document.getElementById('scroll-progress-bar');
+        window.addEventListener('scroll', () => {
+            const doc = document.documentElement;
+            const scrollTop = doc.scrollTop;
+            const scrollHeight = doc.scrollHeight - doc.clientHeight;
+            const pct = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = pct + '%';
+        });
+        </script>   
+        
+        <!-- Javascript to not allow those to send a message when they are not logged in -->
+        <script>
+          function updateSendButton() {
+              const userId = localStorage.getItem('nom_nom_nom_id');
+              const sendButton = document.getElementById('sendMessage');
+          
+              if (!sendButton) return;
+          
+              if (userId) {
+                  sendButton.textContent = 'Send Message';
+                  sendButton.disabled = false;
+                  sendButton.style.backgroundColor = '#50affd'; // Original button color
+                  sendButton.style.cursor = 'pointer';
+              } else {
+                  sendButton.textContent = 'Please Login';
+                  sendButton.disabled = true;
+                  sendButton.style.backgroundColor = 'gray';
+                  sendButton.style.cursor = 'not-allowed';
+              }
+          }
+          
+          document.addEventListener('DOMContentLoaded', function() {
+              updateSendButton();
+          });
+          </script>
+          
+  
    </body>
 </html>
 
