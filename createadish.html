@@ -55,10 +55,11 @@
              align-items: center;
              width: 100%;
            }
-           .chatbot-form {
+           #chatbot-form {
              text-align: center;
              display: flex;
              justify-content: center;
+             display:block;
            }
            #sendMessage {
              justify-content:right;
@@ -129,7 +130,7 @@
            }
            button {
                width: 30%;
-               background-color: #50affd;
+               background-color: #379537;
                color: white;
                padding: 10px;
                margin:10px;
@@ -138,10 +139,12 @@
                cursor: pointer;
                font-size: 16px;
            }
+           button:hover {
+              background-color: #4bb84b;
+           }
            #sendMessage {
                max-width: 200px;
            }
-
 
            /* recipe results */
            .recipe-results{
@@ -202,16 +205,31 @@
            <p id="token-message">Start chatting with Nomly!</p>
        </div>
 
-
+       <!-- GEMINI Chatbot -->
        <div class="nomly-container">
-         <div class="chatbot-form">
-           <input type="text" id="chatbot-input" placeholder="Type your message...">
+
+
+         <!-- <div class="chatbot-form">
+           <input type="text" id="chatbot-input" placeholder="Type your message..." required>
          </div>
-         <button id="sendMessage">Send Message</button>
+         <button id="sendMessage" >Send Message</button> -->
+         <form id="chatbot-form" class="chatbot-form" required>
+          <input
+            type="text"
+            id="chatbot-input"
+            placeholder="Type your message…"
+            required
+          />
+          <button type="submit" id="sendMessage">Send Message</button>
+        </form>
+
+
+
+
          <div class="chatbot-response" id="chatbot-response">Loading...</div>
        </div>
 
-
+       <!-- SPOONACULAR CALL -->
        <div class="spoonacular-description">
          <p>Ran out of tokens?<br>Enter ingredients you have at home to find delicious recipes you can make.</p>
        </div>
@@ -239,7 +257,6 @@
            <p>©NomNomNom &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| &nbsp;<a href="mailto:nomnomnom@gmail.com">nomnomnom@gmail.com</a></p>
        </footer>
 
-
        <!-- API Calls -->
        <script>
 
@@ -248,11 +265,12 @@
         const MODEL = 'gemini-2.0-flash';
         const MAX_ATTEMPTS = 5;
 
-
-        document
-          .getElementById('sendMessage')
-          .addEventListener('click', sendMessage);
-
+        const form = document.getElementById('chatbot-form');
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          if (!form.checkValidity()) return;
+          sendMessage();
+        });
 
         async function sendMessage() {
           const input = document.getElementById('chatbot-input');
@@ -426,6 +444,3 @@
 
    </body>
 </html>
-
-
-
