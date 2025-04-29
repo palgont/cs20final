@@ -85,7 +85,7 @@ fetch('nav.html')
       if (orderButton) {
         orderButton.textContent = 'Please log in';
         orderButton.disabled = true;
-        orderButton.style.backgroundColor = 'grey';
+        orderButton.style.backgroundColor = 'green';
       }
     }
     
@@ -104,7 +104,7 @@ fetch('nav.html')
         if (orderButton) {
           orderButton.textContent = 'Please log in';
           orderButton.disabled = true;
-          orderButton.style.backgroundColor = 'grey';
+          orderButton.style.backgroundColor = 'green';
         }
         window.location.href = 'index.html'; 
       });

@@ -128,6 +128,10 @@
             <div id="nav-placeholder"></div>
 
             <div id = "below_nav"></div>
+            <!-- SCROLLING PROGESS FEATURE -->
+            <div id="scroll-progress">
+                <div id="scroll-progress-bar"></div>
+            </div>
         </div>
         <section>
              <img src="./images/bg2.jpg" alt="">
@@ -257,5 +261,18 @@
             }
 
         </script>
+
+        <!-- scrolling bar feature below nav -->
+        <script>
+            const progressBar = document.getElementById('scroll-progress-bar');
+            window.addEventListener('scroll', () => {
+                const doc = document.documentElement;
+                const scrollTop = doc.scrollTop;
+                const scrollHeight = doc.scrollHeight - doc.clientHeight;
+                const pct = (scrollTop / scrollHeight) * 100;
+                progressBar.style.width = pct + '%';
+            });
+        </script>   
+
     </body>
 </html>

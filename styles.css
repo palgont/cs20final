@@ -82,7 +82,25 @@ nav a:hover{
     color: #fff;
 }
 
-
+/* SCROLLING PROGRESS FEATURE */
+#scroll-progress {
+    position: absolute;  
+    bottom: 0; 
+    width: 100%;
+    height: 6px;
+    background: #031e0fc5;
+    z-index: 101;
+  }
+  
+  /* the actual moving fill */
+  #scroll-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #7dbf87;   /* change to whatever accent you like */
+    transition: width 0.05s;
+  }
+  /* *************************** */
+  
 
 #below_nav{ 
     width: 100%;
@@ -97,10 +115,17 @@ footer {
     color: white;
     padding: 10px 0px;
     font-family: "Open Sans";
+<<<<<<< HEAD
     /* position: absolute; */
     /* margin-bottom: 0; */
     
 }
+=======
+    position: absolute;
+    margin-bottom: 0;
+} 
+
+>>>>>>> e0884a08eef51aa0137ab3fde5c315870af451e6
 footer p a{
         text-decoration: none;
         color:#fff;
