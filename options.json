@@ -6,13 +6,8 @@
             "img_path": "budget_pg.jpg"
         },
         { 
-            "name" : "custom", 
-            "description": "A fully personalized grocery plan tailored to your preferences, dietary needs, and favorite flavors. Choose from a variety of proteins, vegetables, grains, and specialty items like seafood, gourmet cheeses, exotic spices, and organic produce to craft a plan that fits your lifestyle.",
-            "img_path": ""
-        },
-        { 
             "name" : "halal", 
-            "description": "- **Halal**: A selection of meals prepared in accordance with halal dietary laws, ensuring high-quality ingredients and ethical sourcing. Includes halal-certified meats such as chicken, beef, and lamb, along with fresh vegetables, dairy products, grains, and halal snacks for a balanced diet.",
+            "description": "A selection of meals prepared in accordance with halal dietary laws, ensuring high-quality ingredients and ethical sourcing. Includes halal-certified meats such as chicken, beef, and lamb, along with fresh vegetables, dairy products, grains, and halal snacks for a balanced diet.",
             "img_path": ""
         },
         { 

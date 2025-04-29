@@ -41,6 +41,10 @@ app.get('/form.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'form.html'));
 });
 
+app.get('/cart.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cart.html'));
+});
+
 // fetch recipes
 app.get('/data', async (req, res) => {
   try {
@@ -96,28 +100,36 @@ app.get('/bookmarks/:userId', async (req, res) => {
   res.json(bookmarks);
 });
 
-app.get('/fill_cart', async(req, res)=> { 
-  // console.log("I'm in")
-  // console.log("Received data", req.query); 
+app.post('/fill_cart', async(req, res)=> { 
+  const {user_id, num_plans, meal_plan} = req.body;
+  console.log(req.body)
+  console.log("Received data", user_id, num_plans, meal_plan); 
   try { 
-    await cartCollection.insertOne( {user_id: req.query.user_id, 
-      num_plans: req.query.num_plans,
-     meal_option: req.query.meal_plan});
+    await cartCollection.insertOne( {user_id: req.body.user_id, 
+     num_plans: req.body.num_plans,
+     meal_option: req.body.meal_plan});
+     res.json({message:"Cart filled successfully!"})
   } catch(err) { 
-    console.error("Error inserting into mongo")
-     throw new Error(err);
+    console.error("Error inserting into mongo:", err);
+    res.status(500).json({ error: "Error inserting into database" }); 
   }
   
 })
 
 app.get('/get_order', async (req, res) => { 
+  console.log('got here in get order')
   try { 
     const userId = req.query.userId; 
-    const order = await cartCollection.find({_id: userId}); 
-    if (!order) { 
+    console.log("in try")
+    console.log(userId);
+    const order = await cartCollection.find({user_id: userId}).toArray(); 
+    console.log(order[0].user_id)
+    if (!order.length) { 
       return res.status(404).send({error: "Order not found"})
     }
-    console.log(order)
+    console.log("fetched")
+
+    console.log("user_id", order[0].user_id)
     res.send(order)
   }catch (error) { 
     console.log(error); 

@@ -39,7 +39,7 @@
                 font-size:20px;
             }
 
-            .question {
+            .recipe-title {
                 background-color: #f8f8f8;
                 padding: 15px;
                 margin-bottom: 5px;
@@ -50,7 +50,7 @@
                 width: 80%;
             }
 
-            .answer {
+            .description {
                 display: none;
                 padding: 10px;
                 margin-bottom: 10px;
@@ -58,6 +58,10 @@
                 background-color: #f1f1f1;
                 border-radius: 5px;
                 width: 80%;
+            }
+
+            .author {
+                font-size: 10px;
             }
 
             .contents {
@@ -166,8 +170,9 @@
                 data.forEach(recipe => {
                     const div = document.createElement('div');
                     div.innerHTML = `
-                    <div class="question">${recipe.title}</div>
-                    <div class="answer">
+                    <div class="recipe-title">${recipe.title}</div>
+                    <div class="description">
+                        <p class="author">Posted by: ${recipe.author_id}</p>
                         <p>Ingredients:</p>
                         <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
                         <p>Procedure:</p>
@@ -212,9 +217,9 @@
             
             // jQuery Script for Expanding Recipes
             $(document).ready(function () {
-                $(document).on("click", ".question", function () {
-                    $(this).next(".answer").slideToggle();
-                    $(".answer").not($(this).next()).slideUp();
+                $(document).on("click", ".recipe-title", function () {
+                    $(this).next(".description").slideToggle();
+                    $(".description").not($(this).next()).slideUp();
                 });
             });
             // Handle See Bookmarks button
@@ -244,8 +249,8 @@
                     bookmarks.forEach(recipe => {
                         const div = document.createElement('div');
                         div.innerHTML = `
-                        <div class="question">${recipe.title}</div>
-                        <div class="answer">
+                        <div class="recipe-title">${recipe.title}</div>
+                        <div class="description">
                             <p>Ingredients:</p>
                             <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
                             <p>Procedure:</p>
@@ -273,6 +278,36 @@
                 progressBar.style.width = pct + '%';
             });
         </script>   
+
+        <!-- Javascript to not allow those to post recipe when they are not logged in -->
+        <script>
+            function updatePostRecipeButton() {
+                const userId = localStorage.getItem('nom_nom_nom_id');
+                const postRecipeLink = document.querySelector('.buttons a[href="form.html"]');
+            
+                if (!postRecipeLink) return;
+            
+                if (userId) {
+                    // If logged in, allow normal navigation
+                    postRecipeLink.onclick = null;
+                    postRecipeLink.style.pointerEvents = 'auto';
+                    postRecipeLink.style.opacity = '1';
+                } else {
+                    // If not logged in, prevent navigation
+                    postRecipeLink.onclick = function(event) {
+                        event.preventDefault();
+                        alert('Please login to post a recipe.');
+                    };
+                    postRecipeLink.style.pointerEvents = 'auto'; // We allow clicking so we can intercept and show alert
+                    postRecipeLink.style.opacity = '1'; // Normal look
+                }
+            }
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                updatePostRecipeButton();
+            });
+        </script>
+    
 
     </body>
 </html>

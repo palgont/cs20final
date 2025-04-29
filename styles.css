@@ -56,8 +56,8 @@ nav a{
         font-weight: 400;
 }
 nav a:hover{
-        background-color:#50affd;
-        color:#fff;
+        background-color:  #fff;
+        color:#379537;
 }
 
 .nav-links {
@@ -78,8 +78,8 @@ nav a:hover{
 
 /* Hover effects */
 #gSignInBtn:hover, #signoutBtn:hover {
-    background-color: #50affd;
-    color: #fff;
+    background-color: #fff;
+    color: #379537;
 }
 
 /* SCROLLING PROGRESS FEATURE */
@@ -104,7 +104,7 @@ nav a:hover{
 
 #below_nav{ 
     width: 100%;
-    background-color: #032030;
+    background-color: #194119;;
     height: 0;
 }
 
@@ -115,10 +115,10 @@ footer {
     color: white;
     padding: 10px 0px;
     font-family: "Open Sans";
-    position: absolute;
-    margin-bottom: 0;
-} 
-
+    /* position: absolute; */
+    /* margin-bottom: 0; */
+    
+}
 footer p a{
         text-decoration: none;
         color:#fff;
