@@ -13,6 +13,8 @@ console.log("User ID:", payload.sub);
 
 // Save the user ID in localStorage with custom key
 localStorage.setItem('nom_nom_nom_id', payload.sub);  // <<< customized
+if (typeof updateSendButton === 'function') updateSendButton();
+if (typeof updatePostRecipeButton === 'function') updatePostRecipeButton();
 
 // Update UI: hide the sign-in button, show the sign-out button
 const signInBtn = document.getElementById('gSignInBtn');
