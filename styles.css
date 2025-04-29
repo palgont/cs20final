@@ -56,8 +56,8 @@ nav a{
         font-weight: 400;
 }
 nav a:hover{
-        background-color: #379537;;
-        color:#fff;
+        background-color:  #fff;
+        color:#379537;
 }
 
 .nav-links {
@@ -78,8 +78,8 @@ nav a:hover{
 
 /* Hover effects */
 #gSignInBtn:hover, #signoutBtn:hover {
-    background-color:  #379537;;
-    color: #fff;
+    background-color: #fff;
+    color: #379537;
 }
 
 /* SCROLLING PROGRESS FEATURE */
