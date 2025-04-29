@@ -168,7 +168,7 @@
                     div.innerHTML = `
                     <div class="recipe-title">${recipe.title}</div>
                     <div class="description">
-                        <p style="font-size: 15px;">Posted by: ${recipe.author_id}</p>
+                        <p style="font-size: 15px;">Posted by user ${recipe.author_id}</p>
                         <p>Ingredients:</p>
                         <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
                         <p>Procedure:</p>
@@ -247,6 +247,7 @@
                         div.innerHTML = `
                         <div class="recipe-title">${recipe.title}</div>
                         <div class="description">
+                            <p style="font-size: 15px;">Posted by user ${recipe.author_id}</p>
                             <p>Ingredients:</p>
                             <ul>${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
                             <p>Procedure:</p>
