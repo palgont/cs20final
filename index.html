@@ -108,7 +108,7 @@
             height: 45px;
             margin: 10px auto 0;
             border: none;
-            background-color: #007BFF;
+            background-color: green;
             color: white;
             cursor: pointer;
             border-radius: 4px;
@@ -239,7 +239,7 @@
             margin-top: 10px;
             padding: 8px 16px;
             border: none;
-            background-color: #007BFF;
+            background-color: green;
             color: white;
             cursor: pointer;
             border-radius: 4px;
@@ -369,9 +369,12 @@
             transition: transform 0.8s;
             transform-style:preserve-3d;
         }
-        .value-card:hover .value-card-inner,  .value-card:focus, .card:active{
-            transform: rotateY(180deg);
+        .value-card:hover .value-card-inner,
+        .value-card:focus .value-card-inner,
+        .value-card:active .value-card-inner {
+        transform: rotateY(180deg);
         }
+
         .value-card-front, .value-card-back {
             position:absolute;
             width: 100%;
