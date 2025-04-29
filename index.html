@@ -427,7 +427,15 @@
             <div id="nav-placeholder"></div>
 
             <div id = "below_nav"></div>
+
+        <!-- SCROLLING PROGESS FEATURE -->
+        <div id="scroll-progress">
+            <div id="scroll-progress-bar"></div>
         </div>
+
+        </div>
+
+
         <section>
             <img src="./images/banner.jpg" alt="">
         </section>
@@ -585,6 +593,15 @@
             <p>©NomNomNom &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
                 &nbsp; <a href="mailto:nomnomnom@gmail.com">nomnomnom@gmail.com</a></p>
         </footer>
+
+        <!-- reveal footer feature(hidden until scroll) -->
+        <section class="footer-reveal">
+            <div class="footer-reveal__content">
+            <!-- you can either use an <img> or giant text here -->
+            <h1>NomNomNom</h1>
+            </div>
+        </section>
+
         <script>
             $(document).ready(function () {
               let currentIndex = 0;
@@ -638,6 +655,18 @@
               updateSlider();
               let slideInterval = setInterval(() => $('.next').click(), 4000);
             });
-            </script>            
+            </script>     
+            
+            <!-- scrolling bar feature below nav -->
+            <script>
+                const progressBar = document.getElementById('scroll-progress-bar');
+                window.addEventListener('scroll', () => {
+                    const doc = document.documentElement;
+                    const scrollTop = doc.scrollTop;
+                    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+                    const pct = (scrollTop / scrollHeight) * 100;
+                    progressBar.style.width = pct + '%';
+                });
+            </script>       
     </body>
 </html>
