@@ -26,7 +26,17 @@
         <script src="nav.js" defer></script>
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <style>
-
+        html,body{
+            height:100%;
+            margin: 0;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        .push-footer-down {
+            flex:1;
+        }
         </style>
              
     </head>
@@ -110,7 +120,7 @@
             })
             $('#first_section').append(options_div)
         </script>
-        
+        <div class="push-footer-down"></div>
         <!-- Footer -->
         <footer>
             <p>©PropertyPath &nbsp;|&nbsp;+1(212)-616-6300 &nbsp;| 
