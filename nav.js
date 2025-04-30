@@ -29,7 +29,7 @@ const orderButton = document.getElementById('add');
 if (orderButton) {
   orderButton.textContent = 'Order';
   orderButton.disabled = false;
-  orderButton.style.backgroundColor = '#007BFF'; // Original blue color
+  orderButton.style.backgroundColor = '#379537'; // Original blue color
 }
 
 // Save the user in MongoDB
@@ -74,7 +74,7 @@ fetch('nav.html')
       if (orderButton) {
         orderButton.textContent = 'Order';
         orderButton.disabled = false;
-        orderButton.style.backgroundColor = '#007BFF';
+        orderButton.style.backgroundColor = '#379537';
       }
     } else {
       if (signInBtnContainer) {
@@ -87,7 +87,7 @@ fetch('nav.html')
       if (orderButton) {
         orderButton.textContent = 'Please log in to order';
         orderButton.disabled = true;
-        orderButton.style.backgroundColor = 'green';
+        orderButton.style.backgroundColor = '#379537';
       }
     }
     
@@ -106,7 +106,7 @@ fetch('nav.html')
         if (orderButton) {
           orderButton.textContent = 'Log in order';
           orderButton.disabled = true;
-          orderButton.style.backgroundColor = 'green';
+          orderButton.style.backgroundColor = '#379537';
         }
         window.location.href = 'index.html'; 
       });
